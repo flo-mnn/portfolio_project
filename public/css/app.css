@@ -1,4 +1,12 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Saira";
+  src: url("./../../public/font/Saira/Saira-Regular.ttf");
+}
+@font-face {
+  font-family: "Saira Condensed";
+  src: url("./../../public/font/Saira_Condensed/SairaCondensed-Regular.ttf");
+}
 /*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -16013,6 +16021,161 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+:root {
+  --color: #CB8D63;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: gray;
+  color: white;
+  font-family: "Saira" !important;
+}
+body nav {
+  z-index: 5;
+  position: fixed;
+  height: 15vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+body nav #logo {
+  position: absolute;
+  left: 4vw;
+}
+body nav #logo path {
+  fill: white;
+}
+body nav .navbar-displayed {
+  transform: translateY(unset) !important;
+}
+body nav #navbar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translateY(-100%);
+  transition: transform 0.7s;
+}
+body nav #navbar #navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+body nav #navbar #navigation a {
+  text-decoration: none;
+  color: white;
+  width: fit-content;
+  transition: transform 0.4s;
+}
+body nav #navbar #navigation a:hover {
+  color: var(--color);
+  transform: scale(0.8);
+}
+body nav #navbar #navigation .active {
+  color: var(--color);
+}
+body nav #navbar-toggle {
+  position: absolute;
+  right: 4vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body nav #navbar-toggle:focus {
+  outline: none;
+}
+body nav #navbar-toggle i {
+  position: absolute;
+}
+body nav #navbar-toggle .fa-circle {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s;
+  transition-delay: 0.4s;
+}
+body nav #navbar-toggle .circle-grows {
+  opacity: 1;
+  transform: scale(1);
+}
+body nav #navbar-toggle .fa-ellipsis-h {
+  transition: all 0.5s;
+}
+body nav #navbar-toggle .dots-turn {
+  transform: rotate(720deg);
+}
+body section {
+  width: 100%;
+  height: 100%;
+}
+body .display-none {
+  display: none !important;
+}
+body #home {
+  background: url("./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg") no-repeat;
+  background-size: cover;
+  background-position: top center;
+  position: relative;
+  filter: grayscale(20%);
+}
+body #home .inner-section {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(44, 28, 28, 0.25);
+}
+body #home .inner-section #main-title-box {
+  margin-top: 100px;
+  padding: 20px;
+}
+body #home .inner-section #main-title-box #main-title h1 {
+  background: -webkit-linear-gradient(left, white 55%, #2c1c1c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-weight: 900;
+}
+body #home .inner-section #main-title-box #function h5 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+body #home .inner-section #home-footer {
+  position: absolute;
+  bottom: 0;
+  height: 15vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body #home .inner-section #home-footer .footer-item {
+  margin: 5vw;
+}
+body #home .inner-section #home-footer #social a {
+  text-decoration: none;
+  color: white;
+  margin: 0 20px;
+}
+body #home .inner-section #home-footer #social a:hover {
+  color: var(--color);
+  filter: saturate(6);
+}
+body #home .inner-section #home-footer #copyright span {
+  font-size: small;
+  font-family: "Saira Condensed";
 }
 
 /*# sourceMappingURL=app.css.map */

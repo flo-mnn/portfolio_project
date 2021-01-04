@@ -1,1 +1,166 @@
 @import "./responsive";
+
+:root {
+    --color : #CB8D63;
+};
+body {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: gray;
+    color: white;
+    font-family: "Saira" !important;
+    nav {
+        z-index: 5;
+        position: fixed;
+        height: 15vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        #logo {
+            position: absolute;
+            left: 4vw;
+            path {
+                fill: white;
+            };
+        };
+        .navbar-displayed {
+            transform: translateY(unset) !important;
+        };
+        #navbar {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: translateY(-100%);
+            transition: transform 0.7s;
+            #navigation {
+                display: flex;
+                justify-content: space-between;
+                width: 40%;
+                a {
+                    text-decoration: none;
+                    color: white;
+                    width: fit-content;
+                    transition: transform 0.4s;
+                    &:hover {
+                        color: var(--color);
+                        transform: scale(0.8);
+                    };
+                };
+                .active {
+                    color: var(--color);
+                };
+            };
+        };
+        #navbar-toggle {
+            position: absolute;
+            right: 4vw;
+            background-color: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:focus {
+                outline: none;
+            };
+            i {
+                position: absolute;
+            };
+            .fa-circle {
+                opacity: 0;
+                transform: scale(0);
+                transition: all 0.5s;
+                transition-delay: 0.4s;
+            };
+            .circle-grows {
+                opacity: 1;
+                transform: scale(1);
+            };
+            .fa-ellipsis-h {
+                transition: all 0.5s;
+            };
+            .dots-turn {
+                transform: rotate(720deg);
+            };
+        };
+    };
+    section {
+        width: 100%;
+        height: 100%;
+    };
+    .display-none {
+        display: none !important;
+    };
+    #home {
+        background: url('./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg') no-repeat;
+        background-size: cover;
+        background-position: top center;
+        position: relative;
+        filter: grayscale(20%);
+        .inner-section {
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(44, 28, 28, 0.25);
+            #main-title-box {
+                margin-top: 100px;
+                padding: 20px;
+                #main-title{
+                    h1 {
+                        background: -webkit-linear-gradient(left,white 55%, rgb(44, 28, 28));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-size: 4rem;
+                        font-weight: 900;
+                    };
+                };
+                #function {
+                    h5 {
+                        color: white;
+                        font-size: 2rem;
+                        font-weight: 700;
+                    };
+                };
+            };
+            #home-footer {
+                position: absolute;
+                bottom: 0;
+                height: 15vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .footer-item {
+                    margin: 5vw;
+                };
+                #social {
+                    a {
+                        text-decoration: none;
+                        color: white;
+                        margin: 0 20px;
+                        &:hover {
+                            color: var(--color);
+                            filter: saturate(6);
+                        };
+                    };
+                };
+                #copyright {
+                    span {
+                        font-size: small;
+                        font-family: "Saira Condensed";
+                    };
+                };
+
+
+            };
+        };
+    };
+};
