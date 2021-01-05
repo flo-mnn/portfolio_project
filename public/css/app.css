@@ -16200,9 +16200,6 @@ body #home .inner-section #home-footer #copyright span {
   font-size: small;
   font-family: "Saira Condensed";
 }
-body #about {
-  display: flex;
-}
 body #about #introduction img {
   filter: sepia(100%);
 }
@@ -16240,6 +16237,63 @@ body #about #interests .interests-item .label {
 }
 body #about #interests .interests-item:hover {
   background: linear-gradient(to right, transparent 50%, var(--color));
+}
+body #resume {
+  display: flex;
+}
+body #resume #experience {
+  display: flex;
+  justify-content: center;
+}
+body #resume #experience .cube-container {
+  width: 20vw;
+  height: 20vw;
+  perspective: 60vw;
+}
+body #resume #experience .cube-container .cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-10vw);
+  transition: 1s;
+}
+body #resume #experience .cube-container .cube .cube-face {
+  background-color: var(--white);
+  opacity: 0.5;
+  color: var(--color);
+  text-shadow: 2px 2px 3px var(--dark);
+  display: flex;
+  border: solid 2px var(--dark);
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 20vw;
+  height: 20vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+body #resume #experience .cube-container .cube .cube-face.front {
+  transform: rotateY(0deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face.right {
+  transform: rotateY(90deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face.back {
+  transform: rotateY(180deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face.left {
+  transform: rotateY(-90deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face.top {
+  transform: rotateX(90deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face.bottom {
+  transform: rotateX(-90deg) translateZ(10vw);
+}
+body #resume #experience .cube-container .cube .cube-face:hover {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=app.css.map */
