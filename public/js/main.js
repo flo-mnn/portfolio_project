@@ -27,7 +27,7 @@ let mouseY = 0;
 let lastXDeg = 0;
 let lastYDeg = 0;
 
-const speed = 0.07;
+const speed = 0.04;
 
 // Follow mouse movement
 function updateMousePosition(e) {
@@ -66,5 +66,34 @@ setInterval(rotateCube, 66);
 
 // // CUBE end
 
-// let video = document.querySelector('#molengeek-video');
-// video.autoplay();
+// carousel start 
+let slides = document.querySelector('#slider').children;
+let slideNextBtn = document.querySelector('.slider-next');
+let showingSlideN = 0;
+let activeSlide = slides[showingSlideN];
+// active
+let isActive = () => {
+  for (let i = 0; i < slides.length; i++) {
+    let activeClass = slides[i].getAttribute('class');
+    if (activeClass.includes('active')) {
+      showingSlideN = i;  
+    };
+  };
+  activeSlide = slides[showingSlideN];
+  return activeSlide;
+};
+// 
+slideNextBtn.addEventListener('click',function(){
+  isActive();
+  let newSlide = slides[showingSlideN+1];
+  if (showingSlideN===slides.length -1) {
+    newSlide = slides[0];
+  };
+  activeSlide.classList.add("out-next");
+  newSlide.classList.add('translate-next',"active");
+  setTimeout(() => {
+    activeSlide.classList.remove('active',"out-next");
+    newSlide.classList.remove('translate-next');
+  }, 400);
+});
+// carousel end

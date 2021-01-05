@@ -16243,7 +16243,7 @@ body #resume {
 }
 body #resume #experience {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 body #resume #experience .cube-container {
   width: 20vw;
@@ -16256,7 +16256,6 @@ body #resume #experience .cube-container .cube {
   position: relative;
   transform-style: preserve-3d;
   transform: translateZ(-10vw);
-  transition: 1s;
 }
 body #resume #experience .cube-container .cube .cube-face {
   background-color: var(--white);
@@ -16264,7 +16263,7 @@ body #resume #experience .cube-container .cube .cube-face {
   color: var(--color);
   text-shadow: 2px 2px 3px var(--dark);
   display: flex;
-  border: solid 2px var(--dark);
+  border: solid 2px var(--light);
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -16286,6 +16285,10 @@ body #resume #experience .cube-container .cube .cube-face.back {
 body #resume #experience .cube-container .cube .cube-face.left {
   transform: rotateY(-90deg) translateZ(10vw);
 }
+body #resume #experience .cube-container .cube .cube-face.top, body #resume #experience .cube-container .cube .cube-face.bottom {
+  background-color: var(--color);
+  color: var(--white);
+}
 body #resume #experience .cube-container .cube .cube-face.top {
   transform: rotateX(90deg) translateZ(10vw);
 }
@@ -16294,6 +16297,79 @@ body #resume #experience .cube-container .cube .cube-face.bottom {
 }
 body #resume #experience .cube-container .cube .cube-face:hover {
   opacity: 1;
+}
+body #resume #experience #list-experience {
+  width: 40%;
+  display: flex;
+}
+body #resume #experience #list-experience #slider {
+  position: relative;
+  overflow: hidden;
+  height: 65vh;
+  display: flex;
+  width: 100%;
+}
+body #resume #experience #list-experience .slider-next {
+  z-index: 15;
+  position: absolute;
+  left: 90%;
+  align-self: center;
+  padding: 10px 15px;
+  color: var(--color);
+  background: none;
+  border: none;
+}
+body #resume #experience #list-experience .slider-next:focus {
+  outline: none;
+}
+body #resume #experience #list-experience .slider-next:hover {
+  color: var(--light);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+body #resume #experience #list-experience .experience-list-item {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+}
+body #resume #experience #list-experience .experience-list-item.translate-next {
+  animation: next 0.4s forwards linear;
+}
+body #resume #experience #list-experience .experience-list-item.out-next {
+  animation: outNext 0.4s forwards linear;
+}
+body #resume #experience #list-experience .experience-list-item.active {
+  display: flex;
+}
+body #resume #experience #list-experience .experience-list-item h3 {
+  color: var(--light);
+}
+body #resume #experience #list-experience .experience-list-item h5 {
+  color: var(--white);
+  text-shadow: 2px 2px 3px var(--color);
+}
+body #resume #experience #list-experience .experience-list-item span {
+  color: var(--color);
+}
+body #resume #experience #list-experience .experience-list-item p {
+  color: var(--white);
+}
+
+@keyframes next {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes outNext {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */

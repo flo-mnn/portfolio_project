@@ -239,8 +239,7 @@ body {
         display: flex;
         #experience {
             display: flex;
-            justify-content: center;
-
+            justify-content: space-around;
             // cube
             .cube-container {
                 width: 20vw;
@@ -252,14 +251,14 @@ body {
                     position: relative;
                     transform-style: preserve-3d;
                     transform: translateZ(-10vw);
-                    transition: 1s;
+                    // transition: 1s;
                     .cube-face {
                         background-color:var(--white);
                         opacity: 0.5;
                         color: var(--color);
                         text-shadow: 2px 2px 3px var(--dark);
                         display: flex;
-                        border: solid 2px var(--dark);
+                        border: solid 2px var(--light);
                         align-items: center;
                         justify-content: center;
                         position: absolute;
@@ -270,15 +269,18 @@ body {
                         justify-content: space-around;
                         // molengeek
                         &.front {transform : rotateY(0deg) translateZ(10vw);
-                            
                         };
                         // ulb translation
                         &.right {transform : rotateY(90deg) translateZ(10vw);
-
                         };
                         &.back {transform : rotateY(180deg) translateZ(10vw);
                         };
                         &.left {transform : rotateY(-90deg) translateZ(10vw);
+                        };
+                        // hire x2
+                        &.top,&.bottom{
+                            background-color: var(--color);
+                            color: var(--white);
                         };
                         &.top {transform : rotateX(90deg) translateZ(10vw);
                         };
@@ -290,7 +292,84 @@ body {
                     };
                 };
             };
+            #list-experience {
+                width: 40%;
+                display: flex;
+                #slider {
+                position: relative;
+                overflow: hidden;
+                height: 65vh; //to see
+                display: flex;
+                width: 100%;
+                };
+                .slider-next {
+                    z-index: 15;
+                    position: absolute;
+                    left: 90%;
+                    align-self: center;
+                    padding: 10px 15px;
+                    color: var(--color);
+                    background: none;
+                    border: none;
+                    &:focus {
+                        outline: none;
+                    };
+                    &:hover {
+                        color: var(--light);
+                        background-color: rgba(0, 0, 0, 0.3);
+                        border-radius: 50%;
+                    };
+                };
+                .experience-list-item {
+                    position: absolute;
+                    display: none;
+                    flex-direction: column;
+                    &.translate-next {
+                        animation: next 0.4s forwards linear,
+                    };
+                    &.out-next {
+                        animation: outNext 0.4s forwards linear;
+                    };
+                    &.active {
+                        display: flex;
+                    };
+                  h3 {
+                    color: var(--light);
+                  };  
+                  h5 {
+                    color: var(--white);
+                    text-shadow: 2px 2px 3px var(--color);
+                  };
+                  span {
+                    color: var(--color);
+                  };
+                  p {
+                      color: var(--white);
+                  };
+                };
+            };
         };
     };
 
+};
+
+// animation
+
+@keyframes next {
+    from {
+        transform: translateX(100%);
+      };
+    
+      to {
+        transform: translateX(0%);
+      }
+};
+@keyframes outNext {
+    from {
+        transform: translateX(0%);
+      };
+    
+      to {
+        transform: translateX(-100%);
+      }
 };
