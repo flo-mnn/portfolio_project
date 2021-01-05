@@ -2,13 +2,16 @@
 
 :root {
     --color : #CB8D63;
+    --dark : #4D433C;
+    --light : #d4c0b3;
+    --white : white;
 };
 body {
     width: 100%;
     height: 100vh;
     position: relative;
-    background-color: gray;
-    color: white;
+    background-color: var(--dark);
+    color: var(--white);
     font-family: "Saira" !important;
     nav {
         z-index: 5;
@@ -21,7 +24,7 @@ body {
             position: absolute;
             left: 4vw;
             path {
-                fill: white;
+                fill: var(--white);
             };
         };
         .navbar-displayed {
@@ -42,16 +45,17 @@ body {
                 width: 40%;
                 a {
                     text-decoration: none;
-                    color: white;
+                    color: var(--white);
                     width: fit-content;
                     transition: transform 0.4s;
                     &:hover {
-                        color: var(--color);
+                        color: var(--light);
                         transform: scale(0.8);
                     };
                 };
                 .active {
                     color: var(--color);
+                    transform : scale(1.2);
                 };
             };
         };
@@ -60,7 +64,7 @@ body {
             right: 4vw;
             background-color: transparent;
             border: none;
-            color: white;
+            color: var(--white);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,22 +94,44 @@ body {
     };
     section {
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        .inner-section {
+            z-index: 3;
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20vh 10%;
+            .section-title {
+                height: 40vh;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            };
+            .under-section {
+                margin: 10vh 0;
+                width: 100%;
+            };
+        };
     };
     .display-none {
         display: none !important;
     };
     #home {
+        height: 100%;
         background: url('./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg') no-repeat;
         background-size: cover;
         background-position: top center;
         position: relative;
         filter: grayscale(20%);
+        // display: flex;
         .inner-section {
-            z-index: 3;
-            width: 100%;
-            height: 100%;
-            display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -113,18 +139,19 @@ body {
             #main-title-box {
                 margin-top: 100px;
                 padding: 20px;
+                text-shadow: 2px 2px 3px var(--dark);
                 #main-title{
                     h1 {
-                        background: -webkit-linear-gradient(left,white 55%, rgb(44, 28, 28));
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
+                        // background: -webkit-linear-gradient(left,white 55%, rgb(44, 28, 28));
+                        // -webkit-background-clip: text;
+                        // -webkit-text-fill-color: transparent;
                         font-size: 4rem;
                         font-weight: 900;
                     };
                 };
                 #function {
                     h5 {
-                        color: white;
+                        margin-top: 50px;
                         font-size: 2rem;
                         font-weight: 700;
                     };
@@ -144,10 +171,10 @@ body {
                 #social {
                     a {
                         text-decoration: none;
-                        color: white;
+                        color: var(--white);
                         margin: 0 20px;
                         &:hover {
-                            color: var(--color);
+                            color: var(--light);
                             filter: saturate(6);
                         };
                     };
@@ -160,6 +187,51 @@ body {
                 };
 
 
+            };
+        };
+    };
+    #about {
+        display: flex;
+        #introduction {
+            img {
+                filter: sepia(100%);
+            };
+            #location {
+                color: var(--color);
+            };
+            .pluses {
+                justify-content: space-between;
+                align-items: center;
+                margin: 30px 0;
+                a {
+                    width: 10%;
+                    display: flex;
+                    justify-content: center;
+                    text-decoration: none;
+                    color: var(--color);
+                };
+                p {
+                    margin: 0;
+                    width: 70%;
+                };
+            };
+        };
+        #interests {
+            .interests-item {
+                width: 23%; //to change in responsive md = 50%, sm = 100%;
+                margin: 0 5%;
+                background-color: var(--color);
+                border-radius: 5px;
+                padding: 15px;
+                .icon {
+                    width: 20%;
+                };
+                .label {
+                    width: 70%;
+                };
+                &:hover {
+                    background: linear-gradient(to right,transparent 50%,var(--color));
+                };
             };
         };
     };
