@@ -16279,6 +16279,13 @@ body #resume #experience .cube-container .cube .cube-face {
   align-items: center;
   justify-content: space-around;
 }
+body #resume #experience .cube-container .cube .cube-face .cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(var(--dark), var(--color), var(--light));
+}
 body #resume #experience .cube-container .cube .cube-face.front {
   transform: rotateY(0deg) translateZ(10vw);
 }
@@ -16377,6 +16384,9 @@ body #resume #skills .row .skill-item {
   position: absolute;
   color: black;
   transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body #resume #skills .row .skill-item:hover {
   filter: saturate(6);
@@ -16469,6 +16479,31 @@ body #resume #skills .row .skill-item.one:hover .stroke {
 }
 body #resume #skills .row .skill-item .logo {
   position: absolute;
+  transition: 0.3s;
+}
+body #resume #skills .row .skill-item .level {
+  opacity: 0;
+  transition: 0.3s;
+}
+body #resume #languages .lg {
+  display: flex;
+  justify-content: center;
+}
+body #resume #languages .lg .chart-container .back {
+  stroke: #555454;
+  stroke-width: 10;
+}
+body #resume #languages .lg .chart-container .front {
+  stroke: #007bff;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 395.84;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+body #resume #languages .lg .chart-container .text {
+  font-size: 32px;
+  fill: #006fe6;
 }
 
 @keyframes next {

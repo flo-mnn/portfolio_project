@@ -115,16 +115,33 @@ let showFace = (faceIndex) => {
 // // CUBE end
 
 // GET THE CAROUSSEL WITH THE CUBE
-
+let covers = document.querySelectorAll('.cover');
+let cubeClick = false;
+let divXP = document.querySelector('#list-experience');
 cube.addEventListener('click',function(){
-  let divXP = document.querySelector('#list-experience');
+  if (!cubeClick) {
+    // to launch Molengeek video on first click
+    setTimeout(() => {
+      slideNextBtn.click();
+      pause = true;
+    }, 300);
+  };
   cube.style.transition = '0.4s'; 
   divXP.style.transition = '0.4s';
   divXP.classList.add('appears');
-  setTimeout(() => {
-    slideNextBtn.click();
-    pause = true;
-  }, 300);
+  // reveal the cube
+  for (let i = 0; i < covers.length; i++) {
+    covers[i].classList.remove('cover');    
+  };
+  cubeClick = true;
+});
+// put back covers 
+let sectionSkills = document.querySelector('#skills');
+sectionSkills.addEventListener('mouseenter',function(){
+  for (let i = 0; i < covers.length; i++) {
+    covers[i].classList.add('cover');
+  };
+  divXP.classList.remove('appears');
 });
 
 // carousel start 
@@ -170,3 +187,22 @@ slideNextBtn.addEventListener('click',function(){
 
 });
 // carousel end
+
+// skills Hover
+let skillItems = document.querySelectorAll('.skill-item');
+for (let i = 0; i < skillItems.length; i++) {
+  let levelSpan = skillItems[i].querySelector('span');
+  let logo = skillItems[i].querySelector('.logo');
+  skillItems[i].addEventListener('mouseenter',function(){
+    setTimeout(() => {
+      logo.style.opacity = 0;
+      levelSpan.style.opacity = 1;
+    }, 300);
+  });
+  skillItems[i].addEventListener('mouseleave',function(){
+    setTimeout(() => {
+      logo.style.opacity = 1;
+      levelSpan.style.opacity = 0;
+    }, 900);
+  });
+}

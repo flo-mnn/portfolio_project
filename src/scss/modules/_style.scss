@@ -273,6 +273,13 @@ body {
                         flex-direction: column;
                         align-items: center;
                         justify-content: space-around;
+                        .cover {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 10;
+                            background: linear-gradient(var(--dark),var(--color),var(--light));
+                        };
                         // molengeek
                         &.front {transform : rotateY(0deg) translateZ(10vw);
                         };
@@ -375,6 +382,9 @@ body {
                     position: absolute;
                     color: black;
                     transition: 0.4s;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     &:hover{
                         filter: saturate(6);
                         z-index: 8;
@@ -467,11 +477,46 @@ body {
                     // logo and skill superposition
                     .logo {
                         position: absolute;
+                        transition: 0.3s;
+                    };
+                    .level {
+                        opacity: 0;
+                        transition: 0.3s;
                     };
 
                 };
             };
             
+        };
+        #languages {
+            .lg{
+                display: flex;
+                justify-content: center;
+                .chart-container {
+                    $stroke-width: 10;    
+                    // padding: 10px;
+                    .back {
+                        stroke: rgb(85, 84, 84);
+                        stroke-width:  $stroke-width;
+                    }
+                    
+                    .front {
+                        stroke: $primary;
+                        stroke-width: $stroke-width;
+                        stroke-linecap: round;
+                        stroke-dasharray: 395.84;
+                        transform: rotate(-90deg);
+                        transform-origin: center;
+                    }
+                    
+                    .text {
+                      font-size: 32px;
+                      // darken is a SCSS convenient function to make a color darker
+                      fill: darken($primary, 5%);
+                    };
+                    
+                }
+            };
         };
     };
 
