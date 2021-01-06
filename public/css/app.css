@@ -16245,6 +16245,12 @@ body #resume #experience {
   display: flex;
   justify-content: space-around;
 }
+body #resume #experience .col {
+  display: flex;
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+}
 body #resume #experience .cube-container {
   width: 20vw;
   height: 20vw;
@@ -16296,16 +16302,19 @@ body #resume #experience .cube-container .cube .cube-face.bottom {
   transform: rotateX(-90deg) translateZ(10vw);
 }
 body #resume #experience .cube-container .cube .cube-face:hover {
-  opacity: 1;
+  opacity: 1 !important;
 }
 body #resume #experience #list-experience {
   width: 40%;
-  display: flex;
+  display: none;
+}
+body #resume #experience #list-experience.appears {
+  display: flex !important;
 }
 body #resume #experience #list-experience #slider {
   position: relative;
   overflow: hidden;
-  height: 65vh;
+  height: 60vh;
   display: flex;
   width: 100%;
 }
@@ -16353,6 +16362,113 @@ body #resume #experience #list-experience .experience-list-item span {
 }
 body #resume #experience #list-experience .experience-list-item p {
   color: var(--white);
+}
+body #resume #skills .line {
+  fill: black;
+}
+body #resume #skills .stroke {
+  stroke: black;
+}
+body #resume #skills .row {
+  position: relative;
+  height: 50vh;
+}
+body #resume #skills .row .skill-item {
+  position: absolute;
+  color: black;
+  transition: 0.4s;
+}
+body #resume #skills .row .skill-item:hover {
+  filter: saturate(6);
+  z-index: 8;
+}
+body #resume #skills .row .skill-item:nth-child(1) {
+  top: 50%;
+  left: 50%;
+}
+body #resume #skills .row .skill-item:nth-child(2) {
+  top: 20%;
+  left: 10%;
+}
+body #resume #skills .row .skill-item:nth-child(3) {
+  top: 20%;
+  left: 60%;
+}
+body #resume #skills .row .skill-item:nth-child(4) {
+  top: 20%;
+  left: 10%;
+}
+body #resume #skills .row .skill-item:nth-child(5) {
+  top: 40%;
+  left: 90%;
+}
+body #resume #skills .row .skill-item:nth-child(6) {
+  top: 65%;
+  left: 35%;
+}
+body #resume #skills .row .skill-item:nth-child(7) {
+  top: 35%;
+  left: 75%;
+}
+body #resume #skills .row .skill-item:nth-child(8) {
+  top: 50%;
+  left: 20%;
+}
+body #resume #skills .row .skill-item:nth-child(9) {
+  top: 70%;
+  left: 80%;
+}
+body #resume #skills .row .skill-item:nth-child(10) {
+  top: 75%;
+  left: 5%;
+}
+body #resume #skills .row .skill-item:nth-child(11) {
+  top: 65%;
+  left: 65%;
+}
+body #resume #skills .row .skill-item:nth-child(12) {
+  top: 10%;
+  left: 40%;
+}
+body #resume #skills .row .skill-item.four {
+  color: goldenrod;
+}
+body #resume #skills .row .skill-item.four:hover {
+  transform: scale(4);
+}
+body #resume #skills .row .skill-item.three {
+  color: lightcoral;
+}
+body #resume #skills .row .skill-item.three:hover {
+  transform: scale(3);
+}
+body #resume #skills .row .skill-item.two {
+  color: lightblue;
+}
+body #resume #skills .row .skill-item.two:hover {
+  transform: scale(2);
+}
+body #resume #skills .row .skill-item.one {
+  color: silver;
+}
+body #resume #skills .row .skill-item.one .line {
+  fill: silver;
+}
+body #resume #skills .row .skill-item.one .stroke {
+  stroke: silver;
+}
+body #resume #skills .row .skill-item.one:hover {
+  transform: scale(1.4);
+  color: grey;
+}
+body #resume #skills .row .skill-item.one:hover .line {
+  fill: grey;
+}
+body #resume #skills .row .skill-item.one:hover .stroke {
+  stroke: grey;
+}
+body #resume #skills .row .skill-item .logo {
+  position: absolute;
 }
 
 @keyframes next {

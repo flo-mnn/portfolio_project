@@ -14,7 +14,6 @@ let allFaces = document.querySelectorAll('.cube-face');
 for (let i = 0; i < allFaces.length; i++) {
   allFaces[i].addEventListener('mouseenter',function(){
     pause = true;
-    console.log(pause); 
   });  
   allFaces[i].addEventListener('mouseleave',function(){
     pause = false;
@@ -29,10 +28,13 @@ let lastYDeg = 0;
 
 const speed = 0.04;
 
+let newStyle;
+
 // Follow mouse movement
 function updateMousePosition(e) {
     mouseX = e.pageX/vwTOpx(20);
     mouseY = e.pageY/vwTOpx(20);
+    // trick to stop the cube on landing 
 };
 
 function rotateCube(e) {
@@ -41,7 +43,7 @@ function rotateCube(e) {
     } else {
         lastXDeg = lastXDeg + (getAngle(mouseX) - lastXDeg) * speed;
         lastYDeg = lastYDeg + (getAngle(mouseY) - lastYDeg) * speed;
-        let newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
+        newStyle = `translateZ(${defaultPerspective}) rotateY(${lastXDeg}deg) rotateX(${lastYDeg}deg)`;
         cube.style.transform = newStyle;
     };
 }
@@ -64,13 +66,75 @@ function vwTOpx(value) {
 
 setInterval(rotateCube, 66);
 
+// show Cube's face 
+let showFace = (faceIndex) => {
+  cube.style.transition = 'transform 0.5s';
+  let face;
+  switch (faceIndex) {
+    // Molengeek Video - Back
+    case 0:
+      cube.style.transform = `translateZ(0vw) rotateY(-180deg)`;
+      // launch video
+      let video = document.querySelector('#molengeek-video');
+      video.src = "https://www.youtube.com/embed/D9aK6z8fXe4?|&autoplay=1"; 
+      face = video.parentElement;
+      break;
+    // ULB -right
+    case 1:
+      cube.style.transform = `translateZ(${defaultPerspective}) rotateY(-90deg)`;
+      face = document.querySelector('.right')
+      break;
+    // Jourdan -left
+    case 2:
+      cube.style.transform = `translateZ(${defaultPerspective}) rotateY(90deg)`;
+      face = document.querySelector('.left')
+      break;
+    default:
+      console.log('error switch show face cube -caroussel')
+        break;
+        // SIDES PROPERTIES:
+        // // front
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateY(0deg)`;
+        // // right
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateY(-90deg)`;
+        // // back
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateY(-180deg)`;
+        // // left
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateY(90deg)`;
+        // // top
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateX(-90deg)`;
+        // // bottom
+        // cube.style.transform = `translateZ(${defaultPerspective}) rotateX(90deg)`;
+  };
+  // opacity
+  for (let i = 0; i < allFaces.length; i++) {
+    allFaces[i].style.opacity = 0.5;
+  };
+  face.style.opacity = 1;
+};
 // // CUBE end
 
+// GET THE CAROUSSEL WITH THE CUBE
+
+cube.addEventListener('click',function(){
+  let divXP = document.querySelector('#list-experience');
+  cube.style.transition = '0.4s'; 
+  divXP.style.transition = '0.4s';
+  divXP.classList.add('appears');
+  setTimeout(() => {
+    slideNextBtn.click();
+    pause = true;
+  }, 300);
+});
+
 // carousel start 
-let slides = document.querySelector('#slider').children;
+let slider = document.querySelector('#slider');
+let slides = slider.children;
 let slideNextBtn = document.querySelector('.slider-next');
 let showingSlideN = 0;
 let activeSlide = slides[showingSlideN];
+let activeIndex;
+
 // active
 let isActive = () => {
   for (let i = 0; i < slides.length; i++) {
@@ -85,15 +149,24 @@ let isActive = () => {
 // 
 slideNextBtn.addEventListener('click',function(){
   isActive();
-  let newSlide = slides[showingSlideN+1];
+  // show cube face and begin new turn
+  pause = true;
   if (showingSlideN===slides.length -1) {
-    newSlide = slides[0];
-  };
+    activeIndex = 0;
+  } else {
+    activeIndex = showingSlideN+1;
+  }
+  let newSlide = slides[activeIndex];
+  showFace(activeIndex);
   activeSlide.classList.add("out-next");
   newSlide.classList.add('translate-next',"active");
   setTimeout(() => {
     activeSlide.classList.remove('active',"out-next");
     newSlide.classList.remove('translate-next');
-  }, 400);
+    cube.style.transition = 'none';
+  }, 500);
+
+  
+
 });
 // carousel end

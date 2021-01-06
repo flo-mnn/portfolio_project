@@ -241,6 +241,12 @@ body {
             display: flex;
             justify-content: space-around;
             // cube
+            .col {
+                display: flex;
+                height: 50vh; //to see
+                align-items: center; 
+                justify-content: center;
+            };
             .cube-container {
                 width: 20vw;
                 height: 20vw;
@@ -287,18 +293,21 @@ body {
                         &.bottom {transform : rotateX(-90deg) translateZ(10vw);
                         };
                         &:hover {
-                            opacity: 1;
+                            opacity: 1 !important;
                         };
                     };
                 };
             };
             #list-experience {
                 width: 40%;
-                display: flex;
+                display: none;
+                &.appears {
+                    display: flex !important;
+                };
                 #slider {
                 position: relative;
                 overflow: hidden;
-                height: 65vh; //to see
+                height: 60vh; //to see
                 display: flex;
                 width: 100%;
                 };
@@ -348,6 +357,121 @@ body {
                   };
                 };
             };
+        };
+        #skills {
+            // svg
+            .line {
+                fill: black;
+            };
+            .stroke{
+                stroke: black;
+            };
+            // 
+            .row {
+                position: relative;
+                height: 50vh;
+                // background-color: white;
+                .skill-item {
+                    position: absolute;
+                    color: black;
+                    transition: 0.4s;
+                    &:hover{
+                        filter: saturate(6);
+                        z-index: 8;
+                    };
+                    &:nth-child(1) {
+                        top: 50%;
+                        left: 50%;
+                    };
+                    &:nth-child(2) {
+                        top: 20%;
+                        left: 10%;
+                    };
+                    &:nth-child(3) {
+                        top: 20%;
+                        left: 60%;
+                    };
+                    &:nth-child(4) {
+                        top: 20%;
+                        left: 10%;
+                    };
+                    &:nth-child(5) {
+                        top: 40%;
+                        left: 90%;
+                    };
+                    &:nth-child(6) {
+                        top: 65%;
+                        left: 35%;
+                    };
+                    &:nth-child(7) {
+                        top: 35%;
+                        left: 75%;
+                    };
+                    &:nth-child(8) {
+                        top: 50%;
+                        left: 20%;
+                    };
+                    &:nth-child(9) {
+                        top: 70%;
+                        left: 80%;
+                    };
+                    &:nth-child(10) {
+                        top: 75%;
+                        left: 5%;
+                    };
+                    &:nth-child(11) {
+                        top: 65%;
+                        left: 65%;
+                    };
+                    &:nth-child(12) {
+                        top: 10%;
+                        left: 40%;
+                    };
+                    &.four {
+                        color: goldenrod;
+                        &:hover {
+                            transform: scale(4);
+                        };
+                    };
+                    &.three {
+                        color: lightcoral;
+                        &:hover {
+                            transform: scale(3);
+                        };
+                    };
+                    &.two {
+                        color: lightblue;
+                        &:hover {
+                            transform: scale(2);
+                        };
+                    };
+                    &.one {
+                        color: silver;
+                        .line {
+                            fill: silver;
+                        };
+                        .stroke {
+                            stroke: silver;
+                        };
+                        &:hover {
+                            transform: scale(1.4);
+                            color: grey;
+                            .line {
+                                fill: grey;
+                            };
+                            .stroke {
+                                stroke: grey;
+                            };
+                        };
+                    };
+                    // logo and skill superposition
+                    .logo {
+                        position: absolute;
+                    };
+
+                };
+            };
+            
         };
     };
 
