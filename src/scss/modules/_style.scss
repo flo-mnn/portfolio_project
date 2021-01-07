@@ -13,6 +13,28 @@ body {
     background-color: var(--dark);
     color: var(--white);
     font-family: "Saira" !important;
+    // cursor design
+    cursor: none;
+    #navbar-toggle{
+        cursor: none;
+    };
+    #slider-next {
+        cursor: none;
+    };
+    .cursor {
+        width: 3rem;
+        height: 3rem;
+        border: solid 3px var(--light);
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        pointer-events: none;
+        z-index: 25;
+        &.paint {
+            border: none;
+        };
+    };
+    // nav design
     nav {
         z-index: 5;
         position: fixed;
@@ -23,22 +45,25 @@ body {
         #logo {
             position: absolute;
             left: 4vw;
+            z-index: 15;
             path {
                 fill: var(--white);
             };
         };
         .navbar-displayed {
-            transform: translateY(unset) !important;
+            transform: translateY(0) !important;
         }; //for JS
-        #navbar {
+        .navbar-hidden {
+            transform: translateY(-100%) !important;
+        }; //for JS
+        .nav-menu {
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: rgba(0, 0, 0, 0.5);
-            transform: translateY(-100%);
-            transition: transform 0.7s;
+            transition: transform 0.9s;
             #navigation {
                 display: flex;
                 justify-content: space-between;
@@ -48,6 +73,8 @@ body {
                     color: var(--white);
                     width: fit-content;
                     transition: transform 0.4s;
+                    cursor: none;
+                    padding: 10px;
                     &:hover {
                         color: var(--light);
                         transform: scale(0.8);
@@ -60,6 +87,8 @@ body {
             };
         };
         #navbar-toggle {
+            width: 60px;
+            height: 60px;
             position: absolute;
             right: 4vw;
             background-color: transparent;
@@ -75,21 +104,29 @@ body {
                 position: absolute;
             };
             .fa-circle {
-                opacity: 0;
-                transform: scale(0);
                 transition: all 0.5s;
-                transition-delay: 0.4s;
             };
             .circle-grows {
                 opacity: 1;
                 transform: scale(1);
+                transition-delay: 0.4s;
+            }; //for JS
+            .circle-shrinks {
+                opacity: 0;
+                transform: scale(0);
+                transition-delay: none;
             }; //for JS
             .fa-ellipsis-h {
                 transition: all 0.5s;
             };
             .dots-turn {
                 transform: rotate(720deg);
+                opacity: 0;
             }; // for JS
+            // .dots-turn {
+            //     transform: rotate(720deg);
+            //     opacity: 0;
+            // }; // for JS
         };
     };
     section {
@@ -98,6 +135,13 @@ body {
         display: none;
         align-items: center;
         justify-content: center;
+        transition: 0.3s;
+        &.onDisplay{
+            display: flex;
+        };
+        &.blurred{
+            filter: blur(0.3rem) !important;
+        };
         .inner-section {
             z-index: 3;
             width: 100%;
@@ -120,18 +164,16 @@ body {
             };
         };
     };
-    .display-none {
-        display: none !important;
-    }; //for JS
     #home {
         height: 100%;
         background: url('./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg') no-repeat;
         background-size: cover;
         background-position: top center;
         position: relative;
-        filter: grayscale(20%);
+        filter: grayscale(10%);
         // display: flex;
         .inner-section {
+            height: 100%;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -172,7 +214,9 @@ body {
                     a {
                         text-decoration: none;
                         color: var(--white);
-                        margin: 0 20px;
+                        margin: 0 10px;
+                        cursor: none;
+                        padding: 10px;
                         &:hover {
                             color: var(--light);
                             filter: saturate(6);
@@ -223,6 +267,9 @@ body {
                 background-color: var(--color);
                 border-radius: 5px;
                 padding: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 .icon {
                     width: 20%;
                 };
@@ -236,7 +283,10 @@ body {
         };
     };
     #resume {
-        display: flex;
+        // display: flex;
+        .cubeBlock {
+            display: block !important;
+        };
         #experience {
             display: flex;
             justify-content: space-around;
@@ -366,6 +416,7 @@ body {
             };
         };
         #skills {
+            display: none;
             // svg
             .line {
                 fill: black;
@@ -489,41 +540,101 @@ body {
             
         };
         #languages {
+            display: none;
             .lg{
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
                 .chart-container {
-                    $stroke-width: 10;    
-                    // padding: 10px;
+                    opacity: 0;
+                    transition: 0.4s;
+                    $stroke-width: 10;  
+                    $shade: white;  //= var(--color)
+                    &:hover {
+                        .back {
+                            stroke: darken(#CB8D63,50%)
+                        };
+                        .front {
+                            stroke: #CB8D63;
+                        };
+                        .text {
+                            fill: #CB8D63;
+                        };
+                    };
+                    .back,.front,.text {
+                        transition: 0.4s;
+                    };
                     .back {
-                        stroke: rgb(85, 84, 84);
+                        stroke: darken($shade,50%);
                         stroke-width:  $stroke-width;
                     }
                     
                     .front {
-                        stroke: $primary;
+                        stroke: $shade;
                         stroke-width: $stroke-width;
                         stroke-linecap: round;
-                        stroke-dasharray: 395.84;
-                        transform: rotate(-90deg);
+                        // stroke-dasharray: 565.49; //(2 * PI * radius) * % (ex *0.7)
+                        transform: rotate(-90deg); //from top
                         transform-origin: center;
+                        // animation: fillCircle reverse; //add in js
+                        animation-duration: 2s !important;
                     }
-                    
                     .text {
                       font-size: 32px;
-                      // darken is a SCSS convenient function to make a color darker
-                      fill: darken($primary, 5%);
+                      fill: $shade;
+                      opacity: 0;
+                    //   animation: displayGrade 2s forwards; // add in JS
                     };
                     
                 }
+                &:nth-child(3) .front {
+                    // stroke-dasharray: 452.39;
+                    animation-duration: 1.6s !important;
+                };
+                &:nth-child(4) .front {
+                    // stroke-dasharray: 339.30;
+                    animation-duration: 1.2s !important;
+                };
             };
         };
+    };
+    #folio {
+        // display: flex;
+        flex-direction: column;
+        .section-title {
+            height: 30vh;
+        };
+        #construction {
+            width: 100%;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 30vh;
+            h5 {
+                font-family: "Homemade";
+                font-size: 3rem;
+            };
+            h1 {
+                font-family: "Yeon";
+                font-size: 5rem;
+            };
+            .painted {
+                color: var(--color);
+            };
+        };
+    }
+    #contact {
+
     };
 
 };
 
-// animation
+// animations
 
+// resume caroussel
 @keyframes next {
     from {
         transform: translateX(100%);
@@ -542,3 +653,16 @@ body {
         transform: translateX(-100%);
       }
 };
+
+// resume radial progress languages
+@keyframes fillCircle {
+    to { stroke-dasharray: 0,1000000; }
+}
+
+
+@keyframes displayGrade {
+    to { 
+        opacity: 1;
+        // transform: translateY(0);
+    }
+}

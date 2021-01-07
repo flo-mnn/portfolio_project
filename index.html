@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./public/css/app.css">
 </head>
 <body>
+    <div class="cursor"></div>
     <nav>
         <div id="logo">
             <svg width="60" height="45" fill="none" viewBox="0 0 90 65" xmlns="http://www.w3.org/2000/svg">
@@ -16,22 +17,23 @@
                 </g>
             </svg>                
         </div>
-        <div id="navbar">
+        <div class="nav-menu navbar-hidden">
             <div id="navigation">
                 <a href="" class="active"><i class="fas fa-home fa-2x"></i></a>
                 <a href=""><i class="fas fa-home fa-2x"></i></a>
                 <a href=""><i class="fas fa-home fa-2x"></i></a>
                 <a href=""><i class="fas fa-home fa-2x"></i></a>
-                <a href=""><i class="fas fa-home fa-2x"></i></a>
+                <!-- for blog -->
+                <!-- <a href=""><i class="fas fa-home fa-2x"></i></a> -->
                 <a href=""><i class="fas fa-home fa-2x"></i></a>
             </div>
         </div>
         <button id="navbar-toggle">
             <i class="fas fa-ellipsis-h fa-2x"></i>
-            <i class="far fa-circle fa-2x"></i>
+            <i class="far fa-circle fa-2x circle-shrinks"></i>
         </button>
     </nav>
-    <section id="home">
+    <section id="home" class="onDisplay">
         <div class="inner-section" id="inner-home">
             <div id="main-title-box">
                 <div id="main-title"><h1>Monnaie Florence</h1></div>
@@ -140,7 +142,7 @@
                                 <img src="./public/img/molengeek-logo-2.png" alt="molengeek logo" class="img-fluid"></div>
                             <div class="cube-face back">
                                 <div class="cover"></div>
-                                <iframe id="molengeek-video" class="w-100 h-100" src="https://www.youtube.com/embed/D9aK6z8fXe4?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe id="molengeek-video" class="w-100 h-100" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             
                             <div class="cube-face right">
@@ -165,7 +167,7 @@
                 <div id="list-experience">
                     <div id="slider">
                         <div class="experience-list-item">
-                            <h3 class="experience-position">Trainee</h3>
+                            <h3 class="experience-position">Coding School</h3>
                             <h5 class="company-name">MolenGeek</h5>
                             <span class="date">September 2020 - March 2021</span>
                             <p class="xp-description">
@@ -265,19 +267,88 @@
                 </div>
             </div>
             <div class="under-section" id="languages">
-                <div class='lg'>
-                    <svg width='200' height='200' class='chart-container'>
-                      <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
-                      <circle cx='100' cy='100' r='90' class='front' fill='none' />
-                       <g class='text'>
-                         <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>70%</text>
-                      </g>
-                    </svg>
+                <div class="row m-0">
+                    <div class='col-12 col-md-6 col-lg-3 lg'>
+                        <span>English</span>
+                        <svg width='200' height='200' class='chart-container'>
+                          <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
+                          <circle cx='100' cy='100' r='90' class='front' fill='none' />
+                           <g class='text'>
+                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>5/5</text>
+                          </g>
+                        </svg>
+                    </div>
+                    <div class='col-12 col-md-6 col-lg-3 lg'>
+                        <span>French</span>
+                        <svg width='200' height='200' class='chart-container'>
+                          <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
+                          <circle cx='100' cy='100' r='90' class='front' fill='none' />
+                           <g class='text'>
+                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>5/5</text>
+                          </g>
+                        </svg>
+                    </div>
+                    <div class='col-12 col-md-6 col-lg-3 lg'>
+                        <span>Russian</span>
+                        <svg width='200' height='200' class='chart-container'>
+                          <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
+                          <circle cx='100' cy='100' r='90' class='front' fill='none' />
+                           <g class='text'>
+                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>4/5</text>
+                          </g>
+                        </svg>
+                    </div>
+                    <div class='col-sm-12 col-md-6 col-lg-3 lg'>
+                        <span>Dutch</span>
+                        <svg width='200' height='200' class='chart-container'>
+                          <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
+                          <circle cx='100' cy='100' r='90' class='front' fill='none' />
+                           <g class='text'>
+                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>3/5</text>
+                          </g>
+                        </svg>
+                    </div>
                 </div>
             </div>
     </section>
-    <section id="folio"></section>
-    <section id="blog"></section>
+    <section id="folio">
+        <div class="inner-section" id="inner-folio">
+            <div class="section-title"><h1>Have a look</h1></div>
+        </div>
+        <div class="under-section" id="construction">
+            <h5>
+                <span>P</span>
+                <span>o</span>
+                <span>r</span>
+                <span>t</span>
+                <span>f</span>
+                <span>o</span>
+                <span>l</span>
+                <span>i</span>
+                <span>o</span>
+            </h5>
+            <h1>
+                <span>U</span>
+                <span>n</span>
+                <span>d</span>
+                <span>e</span>
+                <span>r</span><br>
+                <span>C</span>
+                <span>o</span>
+                <span>n</span>
+                <span>s</span>
+                <span>t</span>
+                <span>r</span>
+                <span>u</span>
+                <span>c</span>
+                <span>t</span>
+                <span>i</span>
+                <span>o</span>
+                <span>n</span>
+            </h1>
+        </div>
+    </section>
+    <!-- <section id="blog"></section> -->
     <section id="contact"></section>
 
 

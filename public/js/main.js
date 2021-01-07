@@ -1,4 +1,73 @@
+// cursor move start
+let cursor = document.querySelector('.cursor');
+window.addEventListener('mousemove',function(e){
+  cursor.style.top = e.pageY+"px";
+  cursor.style.left = e.pageX+"px";
+});
+// cursor move end
 
+// section display start
+let navToggle = document.querySelector('#navbar-toggle');
+let dots = navToggle.querySelector('.fa-ellipsis-h');
+let circle = navToggle.querySelector('.fa-circle');
+let navMenu = document.querySelector('.nav-menu');
+let navItems = navMenu.querySelectorAll('a');
+let sections = document.querySelectorAll('section');
+let sectionOnDisplay = sections[0];
+
+// toggle part
+navToggle.addEventListener('mouseover',function(){
+  navMenu.classList.replace('navbar-hidden','navbar-displayed');
+  // anim toggle
+  dots.classList.add('dots-turn');
+  circle.classList.replace('circle-shrinks','circle-grows');
+  sectionOnDisplay.classList.add('blurred');
+});
+navMenu.addEventListener('mouseleave',function(){
+  navMenu.classList.replace('navbar-displayed','navbar-hidden');
+  // anim toggle
+  dots.style.transitionDelay = "0.2s";
+  dots.classList.remove('dots-turn');
+  circle.classList.replace('circle-grows','circle-shrinks');
+  setTimeout(() => {
+    sectionOnDisplay.classList.remove('blurred');
+  }, 300);
+});
+
+// links part
+let removeOnDisplay = () => {
+  for (let i = 0; i < sections.length; i++) {
+    sections[i].classList.remove('onDisplay');
+    navItems[i].classList.remove('active');
+    setTimeout(() => {
+      sections[i].classList.remove('blurred');
+    }, 300);
+  };
+  // remove paint brush
+  if ((cursor.children).length>=1) {
+    cursor.classList.remove('paint');
+    cursor.removeChild(brush);
+    cursor.style.transform = 'translate(-50%,-50%)';
+  }
+};
+
+for (let i = 0; i < navItems.length; i++) {
+  navItems[i].addEventListener('click',function(e){
+    e.preventDefault();
+    removeOnDisplay();
+    sections[i].classList.add('onDisplay');
+    navItems[i].classList.add('active');
+    sectionOnDisplay = sections[i];
+    if (i === 3) {
+      cursor.classList.add('paint');
+      cursor.appendChild(brush);
+      cursor.style.transform = 'translate(-10%,-70%)';
+    };
+  });
+};
+
+
+// section display end
 
 
 // // CUBE start
@@ -119,6 +188,8 @@ let covers = document.querySelectorAll('.cover');
 let cubeClick = false;
 let divXP = document.querySelector('#list-experience');
 cube.addEventListener('click',function(){
+  sectionSkills.classList.add('cubeBlock');
+  lgSection.classList.add('cubeBlock');
   if (!cubeClick) {
     // to launch Molengeek video on first click
     setTimeout(() => {
@@ -136,7 +207,7 @@ cube.addEventListener('click',function(){
   cubeClick = true;
 });
 // put back covers 
-let sectionSkills = document.querySelector('#skills');
+var sectionSkills = document.querySelector('#skills');
 sectionSkills.addEventListener('mouseenter',function(){
   for (let i = 0; i < covers.length; i++) {
     covers[i].classList.add('cover');
@@ -188,7 +259,7 @@ slideNextBtn.addEventListener('click',function(){
 });
 // carousel end
 
-// skills Hover
+// skills Hover start
 let skillItems = document.querySelectorAll('.skill-item');
 for (let i = 0; i < skillItems.length; i++) {
   let levelSpan = skillItems[i].querySelector('span');
@@ -206,3 +277,72 @@ for (let i = 0; i < skillItems.length; i++) {
     }, 900);
   });
 }
+// skills hover end
+
+// languages loading start
+
+// helper function to get vh
+function vhTOpx(value) {
+  var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+  var result = (y*value)/100;
+  return result;
+}
+
+var lgSection = document.querySelector('#languages');
+let languages = document.querySelectorAll('.lg');
+window.addEventListener('scroll',function(){
+  if (cubeClick) {
+    if (window.scrollY > vhTOpx(100)){
+      for (let i = 0; i < languages.length; i++) {
+        let progress = languages[i].querySelector('.front');
+        let text = languages[i].querySelector('.text');
+        let svg = languages[i].querySelector('svg');
+        (function(i) {
+          setTimeout(function(){
+           svg.style.opacity = "1";
+           progress.style.animation = 'fillCircle reverse';
+           text.style.animation = 'displayGrade 2s forwards';
+           if (text.textContent.includes('5/5')) {
+             progress.style.strokeDasharray = "565.49";
+           } else if (text.textContent.includes("4/5")){
+             progress.style.strokeDasharray = "452.39";
+           } else if (text.textContent.includes('3/5')){
+             progress.style.strokeDasharray = "339.30";
+           };
+           }, i * 1000);
+       })(i);
+      }
+    };
+  };
+});
+
+
+// languages end
+
+
+// folio letters paint - start
+let sectionConstruction = document.querySelector('#construction');
+let t1 = sectionConstruction.querySelector('h5').querySelectorAll('span');
+let t2 = sectionConstruction.querySelector('h1').querySelectorAll('span');
+let brush = document.createElement('i');
+brush.setAttribute('class',"fas fa-paint-brush fa-2x");
+brush.style.color = "var(--color)";
+// paint function
+let paintLetter = (title) => {
+  for (let i = 0; i < title.length; i++) {
+    title[i].addEventListener('mouseenter',function(){
+      title[i].classList.toggle('painted');
+    });
+  };
+};
+paintLetter(t1);
+paintLetter(t2);
+
+
+// folio letters paint - end
