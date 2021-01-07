@@ -64,12 +64,10 @@ mainTitle.addEventListener('mouseenter',deployWings);
 //     letters[i].classList.add('slide-in');
 //     setTimeout(() => {
 //       letters[i].classList.remove('slide-in');
-//     }, 1500);
+//     }, 2400);
 //   };
 // };
-// logo.addEventListener('mouseenter',function(){
-
-// })
+// logo.addEventListener('mouseover',slideInLetter);
 
 
 

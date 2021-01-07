@@ -48,21 +48,16 @@ body {
             position: absolute;
             left: 4vw;
             z-index: 15;
+            &:hover #M {
+                animation: slideTop 1s forwards;
+            };
+            &:hover #F {
+                animation: slideRight 1s forwards;
+                // animation-delay: 0.8s;
+            };
             path {
                 fill: var(--white);
                 transition: all 0.4s;
-            };
-            &:hover #M{
-                opacity: 0;
-                animation: slideInTop 0.6s forwards;
-                animation-delay: 0.4s;
-                fill: var(--color);
-            };
-            &:hover #F{
-                opacity: 0;
-                animation: slideInRight 0.6s forwards;
-                animation-delay: 0.10s;
-                fill: var(--color);
             };
         };
         .navbar-displayed {
@@ -754,25 +749,25 @@ body {
 };
 
 // logo slide
-@keyframes slideInTop {
+@keyframes slideTop {
     from {
-        transform: translateY(-100);
-        opacity: 1;
+        transform: translateY(-100%);
     };
-    to {
-        transform: translateY(0);
-        opacity: 1;
-
+    40%{
+        transform: translateY(0%);
     };
+    // to {
+    //     transform: translateY(0%);
+    // };
 };
-@keyframes slideInRight {
+@keyframes slideRight {
     from {
-        transform: translateX(100);
-        opacity: 1;
+        transform: translateX(100%) ;
     };
+    // 50% {
+    //     transform: translateX(100%) ;
+    // };
     to {
-        transform: translateY(0);
-        opacity: 1;
-
+        transform: translateY(0%) ;
     };
 };
