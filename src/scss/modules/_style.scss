@@ -32,6 +32,8 @@ body {
         z-index: 25;
         &.paint {
             border: none;
+            opacity: 1 !important;
+            transform: translate(-10%,-70%);
         };
     };
     // nav design
@@ -199,6 +201,36 @@ body {
                     };
                 };
             };
+            // wings
+            .wing {
+                margin-top: 75px;
+                height: fit-content;
+                opacity: 0;
+                svg{
+                    transform: rotateY(-100deg);
+                    transform-origin: 200% bottom;
+                    // transform-box: border-box;
+                    opacity: 0;
+                    transition: transform 1.3s, opacity 3s;
+                    &.deployWings{
+                        transition: transform 1.3s, opacity 3s;
+                        transform: rotateY(-10deg);
+                        opacity: 1;
+                    };
+                    &.moveWings{
+                        animation: moveWings 0.8s infinite alternate-reverse;
+                    };
+                };
+                .triangle {
+                    fill: var(--white);
+                };
+                &#wingRight {
+                    transform: rotateY(180deg);
+                };
+
+            };
+
+
             #home-footer {
                 position: absolute;
                 bottom: 0;
@@ -627,7 +659,40 @@ body {
         };
     }
     #contact {
-
+        input, textarea {
+            padding: 10px;
+            background-color: transparent;
+            border: none;
+            color:var(--white);
+            &:focus{
+                outline: none;
+                caret-color: var(--light);
+                border-color: var(--color);
+                color: var(--color);
+            };
+        };
+        input {
+            margin: 20px 0;
+            border-bottom: var(--white) 2px solid;
+            &::placeholder {
+                color: var(--light);
+            };
+            &#submit{
+                cursor: none;
+                transition: 0.3s;
+                &:hover {
+                    color: var(--color);
+                    border-color: var(--color);
+                    transform: scale(1.4);
+                };
+            };
+        };
+        textarea {
+            resize: none;
+            margin-top: 30px;
+            border-left: var(--white) 2px solid;
+        };
+        
     };
 
 };
@@ -665,4 +730,14 @@ body {
         opacity: 1;
         // transform: translateY(0);
     }
+}
+
+// wings
+@keyframes moveWings {
+    from {
+        transform: rotateY(-60deg) scale(0.9);
+    };
+    to {
+        transform: rotateY(30deg) scale(1.1);
+    };
 }

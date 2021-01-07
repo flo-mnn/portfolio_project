@@ -16064,6 +16064,8 @@ body .cursor {
 }
 body .cursor.paint {
   border: none;
+  opacity: 1 !important;
+  transform: translate(-10%, -70%);
 }
 body nav {
   z-index: 5;
@@ -16218,6 +16220,31 @@ body #home .inner-section #main-title-box #function h5 {
   margin-top: 50px;
   font-size: 2rem;
   font-weight: 700;
+}
+body #home .inner-section .wing {
+  margin-top: 75px;
+  height: fit-content;
+  opacity: 0;
+}
+body #home .inner-section .wing svg {
+  transform: rotateY(-100deg);
+  transform-origin: 200% bottom;
+  opacity: 0;
+  transition: transform 1.3s, opacity 3s;
+}
+body #home .inner-section .wing svg.deployWings {
+  transition: transform 1.3s, opacity 3s;
+  transform: rotateY(-10deg);
+  opacity: 1;
+}
+body #home .inner-section .wing svg.moveWings {
+  animation: moveWings 0.8s infinite alternate-reverse;
+}
+body #home .inner-section .wing .triangle {
+  fill: var(--white);
+}
+body #home .inner-section .wing#wingRight {
+  transform: rotateY(180deg);
 }
 body #home .inner-section #home-footer {
   position: absolute;
@@ -16611,6 +16638,40 @@ body #folio #construction h1 {
 body #folio #construction .painted {
   color: var(--color);
 }
+body #contact input, body #contact textarea {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+}
+body #contact input:focus, body #contact textarea:focus {
+  outline: none;
+  caret-color: var(--light);
+  border-color: var(--color);
+  color: var(--color);
+}
+body #contact input {
+  margin: 20px 0;
+  border-bottom: var(--white) 2px solid;
+}
+body #contact input::placeholder {
+  color: var(--light);
+}
+body #contact input#submit {
+  cursor: none;
+  transition: 0.3s;
+}
+body #contact input#submit:hover {
+  color: var(--color);
+  border-color: var(--color);
+  transform: scale(1.4);
+}
+body #contact textarea {
+  resize: none;
+  margin-top: 30px;
+  border-left: var(--white) 2px solid;
+}
+
 @keyframes next {
   from {
     transform: translateX(100%);
@@ -16635,6 +16696,14 @@ body #folio #construction .painted {
 @keyframes displayGrade {
   to {
     opacity: 1;
+  }
+}
+@keyframes moveWings {
+  from {
+    transform: rotateY(-60deg) scale(0.9);
+  }
+  to {
+    transform: rotateY(30deg) scale(1.1);
   }
 }
 

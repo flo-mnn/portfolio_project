@@ -4,7 +4,59 @@ window.addEventListener('mousemove',function(e){
   cursor.style.top = e.pageY+"px";
   cursor.style.left = e.pageX+"px";
 });
+
+// light opacity on elements' hover
+let cursorOpacity05 = [document.querySelectorAll('span'),document.querySelectorAll('h1'),document.querySelectorAll('h3'),document.querySelectorAll('h5'),document.querySelectorAll('p'),document.querySelectorAll('button'),document.querySelectorAll('a'),document.querySelectorAll('.cube'),document.querySelectorAll('i'),document.querySelectorAll('img'),document.querySelectorAll('#logo'),document.querySelectorAll('.interests-item'),document.querySelectorAll('input'),document.querySelectorAll('textarea')];
+cursorOpacity05.flat();
+for (let i = 0; i < cursorOpacity05.length; i++) {
+  let nodesI = cursorOpacity05[i];
+  for (let i = 0; i < nodesI.length; i++) {
+    nodesI[i].addEventListener('mouseover',function(){
+      cursor.style.opacity = '0.5';
+    });
+    nodesI[i].addEventListener('mouseout',function(){
+      cursor.style.opacity = '1';
+    });
+  };
+};
 // cursor move end
+
+
+
+// wings test
+
+let mainTitle = document.querySelector('#main-title-box');
+let wingsDeployed;
+let svgs = home.querySelectorAll('svg');
+let wingsCall = 0; //otherwise, a closure of the wings happens 20sec after each enter of the mouse, which can make the wings close prematurely
+let closeWings = () => {
+  for (let i = 0; i < svgs.length; i++) {
+    svgs[i].classList.remove('moveWings');
+    // svgs[i].style.transition = 'all 1.3s';
+    setTimeout(() => {
+      svgs[i].classList.remove('deployWings');
+    }, 1300);
+  };
+};
+let deployWings = () => {
+  wingsCall++;
+  if (wingsCall===1) {
+    for (let i = 0; i < svgs.length; i++) {
+      svgs[i].parentElement.style.opacity = "1";
+      svgs[i].classList.add('deployWings');
+      setTimeout(() => {
+        svgs[i].classList.add('moveWings');
+      }, 1300);
+    };
+    setTimeout(() => {
+      closeWings();
+      wingsCall=0;
+    }, 20000);
+  }
+};
+mainTitle.addEventListener('mouseenter',deployWings);
+
+
 
 // section display start
 let navToggle = document.querySelector('#navbar-toggle');
@@ -47,8 +99,7 @@ let removeOnDisplay = () => {
   if ((cursor.children).length>=1) {
     cursor.classList.remove('paint');
     cursor.removeChild(brush);
-    cursor.style.transform = 'translate(-50%,-50%)';
-  }
+  };
 };
 
 for (let i = 0; i < navItems.length; i++) {
@@ -61,7 +112,6 @@ for (let i = 0; i < navItems.length; i++) {
     if (i === 3) {
       cursor.classList.add('paint');
       cursor.appendChild(brush);
-      cursor.style.transform = 'translate(-10%,-70%)';
     };
   });
 };

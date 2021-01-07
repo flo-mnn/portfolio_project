@@ -1,0 +1,19 @@
+<svg width="100" height="87" viewBox="0 0 474 410" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Wing">
+<g id="top" class="wingPart">
+<path class="triangle" id="Vector" d="M304.1 0.100006H169L236.5 117.2L304.1 0.100006Z"/>
+<path class="triangle" id="Vector_2" d="M135.2 0.100006H0L67.6 117.2L135.2 0.100006Z"/>
+<path class="triangle" id="Vector_3" opacity="0.4" d="M152.1 9.89999L84.5 127H219.6L152.1 9.89999Z"/>
+<path class="triangle" id="Vector_4" opacity="0.4" d="M321 9.89999L253.5 127H388.6L321 9.89999Z"/>
+</g>
+<g id="middle" class="wingPart">
+<path class="triangle" id="Vector_5" d="M388.6 146.5H253.5L321 263.5L388.6 146.5Z"/>
+<path class="triangle" id="Vector_6" d="M219.6 146.5H84.5L152.1 263.5L219.6 146.5Z"/>
+<path class="triangle" id="Vector_7" opacity="0.4" d="M236.5 156.2L169 273.3H304.1L236.5 156.2Z"/>
+<path class="triangle" id="Vector_8" opacity="0.4" d="M405.5 156.2L337.9 273.3H473.1L405.5 156.2Z"/>
+</g>
+<g id="bottom" class="wingPart">
+<path class="triangle" id="Vector_9" d="M473.1 292.8H337.9L405.5 409.9L473.1 292.8Z"/>
+</g>
+</g>
+</svg>
