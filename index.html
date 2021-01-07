@@ -10,7 +10,7 @@
     <div class="cursor"></div>
     <nav>
         <div id="logo">
-            <svg width="60" height="45" fill="none" viewBox="0 0 90 65" xmlns="http://www.w3.org/2000/svg">
+            <svg width="60" height="45" fill="var(--white)" viewBox="0 0 90 65" xmlns="http://www.w3.org/2000/svg">
                 <g id="Initials">
                 <path id="M" d="M5.7 8.52V6.72H16.74L34.02 43.44L32.04 48H24.24L5.7 8.52ZM39.6 30.66H39.36L35.34 40.38L30.18 29.34L39.6 6.72H51V48H39.6V30.66ZM5.7 14.46L16.74 37.98V48H5.7V14.46Z"/>
                 <path id="F" d="M54.9 18.72H66.9V60H54.9V18.72ZM69.42 18.72H83.46V27.9H69.42V18.72ZM69.42 35.76H81.24V44.94H69.42V35.76Z"/>
@@ -35,7 +35,7 @@
     </nav>
     <section id="home" class="onDisplay">
         <div class="inner-section" id="inner-home">
-            <div class="row justify-center m-0">
+            <div class="row justify-center m-0 flex-nowrap">
                 <div class="wing" id="wingLeft">
                     <svg width="100" height="87" viewBox="0 0 474 410" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="Wing">
@@ -58,7 +58,7 @@
                     </svg>
                 </div>
                 <div id="main-title-box">
-                    <div id="main-title"><h1>Monnaie Florence</h1></div>
+                    <div id="main-title"><h1><em>M</em>onnaie <em>F</em>lorence</h1></div>
                     <div id="function"><h5> I am a Developer</h5></div>
                 </div>
                 <div class="wing" id="wingRight">
@@ -85,11 +85,16 @@
             </div>
             <div id="home-footer">
                 <div class="footer-item" id="social">
-                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                    <a href=""><i class="fab fa-github"></i></a>
-                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="footer-item" id="copyright"><span>Monnaie Florence © 2021 All rights reserved.</span>
+                <div class="footer-item" id="copyright">
+                    <span class="credits">Wings Svg: <a href="http://www.onlinewebfonts.com" target="_blank">onlinewebfonts</a></span>
+                    <span class="credits">Portfolio Inspiration: <a href="https://themeforest.net/user/malyarchuk" target="_blank">Malyarchuk</a></span>
+                    <span class="credits">Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></span>
+                    <span class="credits underline">Credits</span>
+                    <span class="credits" id="copyrightSpan">Monnaie Florence © 2021<br>All rights reserved.</span>
                 </div>
             </div>
         </div>
@@ -239,7 +244,7 @@
                 </div>
             </div>
             <div class="under-section" id="skills">
-                <div class="row">
+                <div class="row m-0">
                     <div class="skill-item four">
                         <i class="fab fa-html5 fa-4x logo"></i>
                         <span class="level">advanced</span>
@@ -318,8 +323,9 @@
                           <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
                           <circle cx='100' cy='100' r='90' class='front' fill='none' />
                            <g class='text'>
-                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>5/5</text>
-                          </g>
+                               <text class="out-of-5" x='100' y='100' alignment-baseline="central" text-anchor="middle">5/5</text>
+                               <text class="european" x='100' y='100' alignment-baseline="central" text-anchor="middle">C2</text>
+                        </g>
                         </svg>
                     </div>
                     <div class='col-12 col-md-6 col-lg-3 lg'>
@@ -328,7 +334,8 @@
                           <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
                           <circle cx='100' cy='100' r='90' class='front' fill='none' />
                            <g class='text'>
-                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>5/5</text>
+                             <text class="out-of-5"x='100' y='100' alignment-baseline="central" text-anchor="middle">5/5</text>
+                             <text id="french" class="european"x='100' y='100' alignment-baseline="central" text-anchor="middle">Mother Tongue</text>
                           </g>
                         </svg>
                     </div>
@@ -338,7 +345,8 @@
                           <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
                           <circle cx='100' cy='100' r='90' class='front' fill='none' />
                            <g class='text'>
-                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>4/5</text>
+                             <text class="out-of-5" x='100' y='100' alignment-baseline="central" text-anchor="middle">4/5</text>
+                             <text class="european" x='100' y='100' alignment-baseline="central" text-anchor="middle">C1</text>
                           </g>
                         </svg>
                     </div>
@@ -348,7 +356,8 @@
                           <circle cx='100' cy='100' r='90' class='back' fill='none'   class='back' />
                           <circle cx='100' cy='100' r='90' class='front' fill='none' />
                            <g class='text'>
-                             <text x='100' y='100' alignment-baseline="central" text-anchor="middle" id='percentage'>3/5</text>
+                             <text class="out-of-5" x='100' y='100' alignment-baseline="central" text-anchor="middle">3/5</text>
+                             <text class="european" x='100' y='100' alignment-baseline="central" text-anchor="middle">B2</text>
                           </g>
                         </svg>
                     </div>

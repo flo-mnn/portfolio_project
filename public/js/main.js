@@ -1,8 +1,20 @@
 // cursor move start
 let cursor = document.querySelector('.cursor');
 window.addEventListener('mousemove',function(e){
-  cursor.style.top = e.pageY+"px";
-  cursor.style.left = e.pageX+"px";
+
+  // for section full page with no scroll, based on clientW/H
+  if ((sectionOnDisplay === sections[0]) && (document.documentElement.clientWidth -24 <= e.pageX|| document.documentElement.clientHeight -24<= e.pageY)) {
+      cursor.style.top = e.pageY - 48 +"px";
+      cursor.style.left = e.pageX -48 +"px";
+  } else {
+    cursor.style.top = e.pageY - 24 +"px";
+    cursor.style.left = e.pageX -24 +"px";
+    // otherwise, based on innerW (no need of height since there is a scrollbar on Y anyway)
+    if (e.pageX +24 >= document.documentElement.clientWidth) {
+      cursor.style.left = (document.documentElement.clientWidth - 48) +"px";
+    } 
+  };
+  
 });
 
 // light opacity on elements' hover
@@ -11,6 +23,7 @@ cursorOpacity05.flat();
 for (let i = 0; i < cursorOpacity05.length; i++) {
   let nodesI = cursorOpacity05[i];
   for (let i = 0; i < nodesI.length; i++) {
+    nodesI[i].style.cursor = "none";
     nodesI[i].addEventListener('mouseover',function(){
       cursor.style.opacity = '0.5';
     });
@@ -23,8 +36,7 @@ for (let i = 0; i < cursorOpacity05.length; i++) {
 
 
 
-// wings test
-
+// wings anim
 let mainTitle = document.querySelector('#main-title-box');
 let wingsDeployed;
 let svgs = home.querySelectorAll('svg');
@@ -54,24 +66,38 @@ let deployWings = () => {
   }
 };
 mainTitle.addEventListener('mouseenter',deployWings);
+// wings anum end
 
-// logo slide
-// let logo = document.querySelector('#logo')
-// let letters = logo.querySelectorAll('path');
+// credits slide In - start
+let copyrightDiv = document.querySelector('#copyright');
+let credits = document.querySelectorAll('.credits');
+let copyCall = 0;
+copyrightDiv.addEventListener('mouseover',function(){
+  copyCall ++;
+  if (copyCall === 1) {
+    for (let i = credits.length -1; i >= 0; i--) {
+      (function(i) {
+        setTimeout(function(){
+          credits[i].style.transition = "0.3s";
+          credits[i].style.transform = 'translateX(0)';
+         }, i * 150);
+     })(i);
+     setTimeout(() => {
+       for (let i = 0; i < credits.length; i++) {
+         if (i === credits.length -1) {
+          credits[i].style.transform = "rotate(-90deg)";  
+         } else {
+           credits[i].style.transform = 'translateX(500%)';
+         };
+       };
+       copyCall = 0;
+    }, 5000);
+    }; 
+  }
+});
+// credits slide In - end
 
-// let slideInLetter = () => {
-//   for (let i = 0; i < letters.length; i++) {
-//     letters[i].classList.add('slide-in');
-//     setTimeout(() => {
-//       letters[i].classList.remove('slide-in');
-//     }, 2400);
-//   };
-// };
-// logo.addEventListener('mouseover',slideInLetter);
-
-
-
-// section display start
+// section display start -- navbar
 let navToggle = document.querySelector('#navbar-toggle');
 let dots = navToggle.querySelector('.fa-ellipsis-h');
 let circle = navToggle.querySelector('.fa-circle');
@@ -128,8 +154,6 @@ for (let i = 0; i < navItems.length; i++) {
     };
   });
 };
-
-
 // section display end
 
 
@@ -359,6 +383,7 @@ function vhTOpx(value) {
 
 var lgSection = document.querySelector('#languages');
 let languages = document.querySelectorAll('.lg');
+
 window.addEventListener('scroll',function(){
   if (cubeClick) {
     if (window.scrollY > vhTOpx(100)){

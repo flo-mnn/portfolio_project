@@ -15,6 +15,14 @@
   font-family: "Homemade";
   src: url("./../../public/font/Homemade_Apple/HomemadeApple-Regular.ttf");
 }
+@font-face {
+  font-family: "NothingYou";
+  src: url("./../../public/font/Nothing_You_Could_Do/NothingYouCouldDo-Regular.ttf");
+}
+@font-face {
+  font-family: "Saira Stencil";
+  src: url("./../../public/font/Saira_Stencil_One/SairaStencilOne-Regular.ttf");
+}
 /*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -16035,9 +16043,14 @@ h3 {
   --dark: #4D433C;
   --light: #d4c0b3;
   --white: white;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100vh;
   position: relative;
@@ -16046,18 +16059,11 @@ body {
   font-family: "Saira" !important;
   cursor: none;
 }
-body #navbar-toggle {
-  cursor: none;
-}
-body #slider-next {
-  cursor: none;
-}
 body .cursor {
   width: 3rem;
   height: 3rem;
   border: solid 3px var(--light);
   border-radius: 50%;
-  transform: translate(-50%, -50%);
   position: absolute;
   pointer-events: none;
   z-index: 25;
@@ -16065,7 +16071,6 @@ body .cursor {
 body .cursor.paint {
   border: none;
   opacity: 1 !important;
-  transform: translate(-10%, -70%);
 }
 body nav {
   z-index: 5;
@@ -16081,14 +16086,10 @@ body nav #logo {
   z-index: 15;
 }
 body nav #logo:hover #M {
-  animation: slideTop 1s forwards;
+  animation: slideTop 0.8s forwards;
 }
 body nav #logo:hover #F {
-  animation: slideRight 1s forwards;
-}
-body nav #logo path {
-  fill: var(--white);
-  transition: all 0.4s;
+  animation: slideRight 0.8s forwards;
 }
 body nav .navbar-displayed {
   transform: translateY(0) !important;
@@ -16115,7 +16116,6 @@ body nav .nav-menu #navigation a {
   color: var(--white);
   width: fit-content;
   transition: transform 0.4s;
-  cursor: none;
   padding: 10px;
 }
 body nav .nav-menu #navigation a:hover {
@@ -16223,7 +16223,13 @@ body #home .inner-section #main-title-box #main-title h1 {
   font-size: 4rem;
   font-weight: 900;
 }
+body #home .inner-section #main-title-box #main-title h1 em {
+  font-style: normal;
+  font-family: "Saira Stencil";
+  font-weight: normal;
+}
 body #home .inner-section #main-title-box #function h5 {
+  font-family: "NothingYou";
   margin-top: 50px;
   font-size: 2rem;
   font-weight: 700;
@@ -16255,29 +16261,53 @@ body #home .inner-section .wing#wingRight {
 body #home .inner-section #home-footer {
   position: absolute;
   bottom: 0;
-  height: 15vh;
+  height: fit-content;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 body #home .inner-section #home-footer .footer-item {
-  margin: 5vw;
+  margin: 1vw 5vw;
 }
 body #home .inner-section #home-footer #social a {
   text-decoration: none;
   color: var(--white);
   margin: 0 10px;
-  cursor: none;
   padding: 10px;
 }
 body #home .inner-section #home-footer #social a:hover {
   color: var(--light);
   filter: saturate(6);
 }
+body #home .inner-section #home-footer #social a i {
+  transition: transform 0.3s;
+}
+body #home .inner-section #home-footer #copyright {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
 body #home .inner-section #home-footer #copyright span {
   font-size: small;
   font-family: "Saira Condensed";
+  margin-top: 3px;
+}
+body #home .inner-section #home-footer #copyright span.underline {
+  text-decoration: underline;
+}
+body #home .inner-section #home-footer #copyright span.credits {
+  transform: translateX(500%);
+}
+body #home .inner-section #home-footer #copyright span a {
+  text-decoration: none;
+  color: var(--light);
+}
+body #home .inner-section #home-footer #copyright span#copyrightSpan {
+  text-align: end;
+  transform: translateX(0%) rotate(-90deg);
+  transform-origin: top right;
 }
 body #about #introduction img {
   filter: sepia(100%);
@@ -16310,6 +16340,7 @@ body #about #interests .interests-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 3s;
 }
 body #about #interests .interests-item .icon {
   width: 20%;
@@ -16318,6 +16349,7 @@ body #about #interests .interests-item .label {
   width: 70%;
 }
 body #about #interests .interests-item:hover {
+  transition: 0.3s;
   background: linear-gradient(to right, transparent 50%, var(--color));
 }
 body #resume .cubeBlock {
@@ -16412,7 +16444,7 @@ body #resume #experience #list-experience .slider-next {
   position: absolute;
   left: 90%;
   align-self: center;
-  padding: 10px 15px;
+  padding: 9px 15px;
   color: var(--color);
   background: none;
   border: none;
@@ -16577,6 +16609,7 @@ body #resume #languages .lg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.3s;
 }
 body #resume #languages .lg .chart-container {
   opacity: 0;
@@ -16588,10 +16621,19 @@ body #resume #languages .lg .chart-container:hover .back {
 body #resume #languages .lg .chart-container:hover .front {
   stroke: #CB8D63;
 }
-body #resume #languages .lg .chart-container:hover .text {
+body #resume #languages .lg .chart-container:hover text {
   fill: #CB8D63;
 }
-body #resume #languages .lg .chart-container .back, body #resume #languages .lg .chart-container .front, body #resume #languages .lg .chart-container .text {
+body #resume #languages .lg .chart-container:hover text.european {
+  opacity: 1;
+}
+body #resume #languages .lg .chart-container:hover text.european#french {
+  font-size: 16px;
+}
+body #resume #languages .lg .chart-container:hover text.out-of-5 {
+  opacity: 0;
+}
+body #resume #languages .lg .chart-container .back, body #resume #languages .lg .chart-container .front, body #resume #languages .lg .chart-container .text, body #resume #languages .lg .chart-container text {
   transition: 0.4s;
 }
 body #resume #languages .lg .chart-container .back {
@@ -16609,6 +16651,10 @@ body #resume #languages .lg .chart-container .front {
 body #resume #languages .lg .chart-container .text {
   font-size: 32px;
   fill: white;
+  opacity: 0;
+  transition: all 0.3s;
+}
+body #resume #languages .lg .chart-container .text .european {
   opacity: 0;
 }
 body #resume #languages .lg:nth-child(3) .front {
@@ -16664,7 +16710,6 @@ body #contact input::placeholder {
   color: var(--light);
 }
 body #contact input#submit {
-  cursor: none;
   transition: 0.3s;
 }
 body #contact input#submit:hover {
@@ -16724,8 +16769,11 @@ body #contact textarea {
   from {
     transform: translateX(100%);
   }
+  30% {
+    transform: translateX(100%);
+  }
   to {
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 }
 
