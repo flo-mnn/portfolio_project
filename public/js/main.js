@@ -32,7 +32,6 @@ let wingsCall = 0; //otherwise, a closure of the wings happens 20sec after each 
 let closeWings = () => {
   for (let i = 0; i < svgs.length; i++) {
     svgs[i].classList.remove('moveWings');
-    // svgs[i].style.transition = 'all 1.3s';
     setTimeout(() => {
       svgs[i].classList.remove('deployWings');
     }, 1300);
@@ -46,7 +45,7 @@ let deployWings = () => {
       svgs[i].classList.add('deployWings');
       setTimeout(() => {
         svgs[i].classList.add('moveWings');
-      }, 1300);
+      }, 200);
     };
     setTimeout(() => {
       closeWings();
@@ -55,6 +54,22 @@ let deployWings = () => {
   }
 };
 mainTitle.addEventListener('mouseenter',deployWings);
+
+// logo slide
+// let logo = document.querySelector('#logo')
+// let letters = logo.querySelectorAll('path');
+
+// let slideInLetter = () => {
+//   for (let i = 0; i < letters.length; i++) {
+//     letters[i].classList.add('slide-in');
+//     setTimeout(() => {
+//       letters[i].classList.remove('slide-in');
+//     }, 1500);
+//   };
+// };
+// logo.addEventListener('mouseenter',function(){
+
+// })
 
 
 

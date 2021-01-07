@@ -16082,6 +16082,19 @@ body nav #logo {
 }
 body nav #logo path {
   fill: var(--white);
+  transition: all 0.4s;
+}
+body nav #logo:hover #M {
+  opacity: 0;
+  animation: slideInTop 0.6s forwards;
+  animation-delay: 0.4s;
+  fill: var(--color);
+}
+body nav #logo:hover #F {
+  opacity: 0;
+  animation: slideInRight 0.6s forwards;
+  animation-delay: 0.1s;
+  fill: var(--color);
 }
 body nav .navbar-displayed {
   transform: translateY(0) !important;
@@ -16233,12 +16246,11 @@ body #home .inner-section .wing svg {
   transition: transform 1.3s, opacity 3s;
 }
 body #home .inner-section .wing svg.deployWings {
-  transition: transform 1.3s, opacity 3s;
   transform: rotateY(-10deg);
   opacity: 1;
 }
 body #home .inner-section .wing svg.moveWings {
-  animation: moveWings 0.8s infinite alternate-reverse;
+  animation: moveWings 0.8s infinite alternate;
 }
 body #home .inner-section .wing .triangle {
   fill: var(--white);
@@ -16704,6 +16716,26 @@ body #contact textarea {
   }
   to {
     transform: rotateY(30deg) scale(1.1);
+  }
+}
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
