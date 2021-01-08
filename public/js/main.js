@@ -105,6 +105,7 @@ let navMenu = document.querySelector('.nav-menu');
 let navItems = navMenu.querySelectorAll('a');
 let sections = document.querySelectorAll('section');
 let sectionOnDisplay = sections[0];
+let loader = document.querySelector('#loading-page');
 
 // toggle part
 navToggle.addEventListener('mouseover',function(){
@@ -134,24 +135,31 @@ let removeOnDisplay = () => {
       sections[i].classList.remove('blurred');
     }, 300);
   };
-  // remove paint brush
+  // remove paint brush for folio section
   if ((cursor.children).length>=1) {
     cursor.classList.remove('paint');
     cursor.removeChild(brush);
   };
 };
-
+// change page
 for (let i = 0; i < navItems.length; i++) {
   navItems[i].addEventListener('click',function(e){
     e.preventDefault();
-    removeOnDisplay();
-    sections[i].classList.add('onDisplay');
-    navItems[i].classList.add('active');
-    sectionOnDisplay = sections[i];
-    if (i === 3) {
-      cursor.classList.add('paint');
-      cursor.appendChild(brush);
-    };
+    loader.classList.add('load-page');
+    // on half loader animation => 3s/2=1.5s;
+    setTimeout(() => {
+      removeOnDisplay();
+      sections[i].classList.add('onDisplay');
+      navItems[i].classList.add('active');
+      sectionOnDisplay = sections[i];
+      if (i === 3) {
+        cursor.classList.add('paint');
+        cursor.appendChild(brush);
+      };
+    }, 1500);
+    setTimeout(() => {
+      loader.classList.remove('load-page');
+    }, 3000);
   });
 };
 // section display end
