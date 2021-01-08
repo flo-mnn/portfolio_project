@@ -16138,14 +16138,27 @@ body nav #logo {
 body nav #logo:hover #M {
   animation: slideTop 0.8s forwards;
 }
+@keyframes slideTop {
+  from {
+    transform: translateY(-100%);
+  }
+  40% {
+    transform: translateY(0%);
+  }
+}
 body nav #logo:hover #F {
   animation: slideRight 0.8s forwards;
 }
-body nav .navbar-displayed {
-  transform: translateY(0) !important;
-}
-body nav .navbar-hidden {
-  transform: translateY(-100%) !important;
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+  }
+  30% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
 body nav .nav-menu {
   width: 100%;
@@ -16155,6 +16168,12 @@ body nav .nav-menu {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   transition: transform 0.9s;
+}
+body nav .nav-menu.navbar-displayed {
+  transform: translateY(0) !important;
+}
+body nav .nav-menu.navbar-hidden {
+  transform: translateY(-100%) !important;
 }
 body nav .nav-menu #navigation {
   display: flex;
@@ -16167,19 +16186,16 @@ body nav .nav-menu #navigation a {
   width: fit-content;
   transition: transform 0.4s;
   padding: 1rem 1.5rem;
+  font-size: 1.5rem;
 }
 body nav .nav-menu #navigation a #hi {
-  font-size: 1.5rem;
   font-family: "NothingYou";
-}
-body nav .nav-menu #navigation a i {
-  font-size: 1.5rem;
 }
 body nav .nav-menu #navigation a:hover {
   color: var(--light);
   transform: scale(0.8);
 }
-body nav .nav-menu #navigation .active {
+body nav .nav-menu #navigation a.active {
   color: var(--color);
   transform: scale(1.2);
 }
@@ -16201,25 +16217,22 @@ body nav #navbar-toggle:focus {
 body nav #navbar-toggle i {
   position: absolute;
 }
-body nav #navbar-toggle .fa-circle {
+body nav #navbar-toggle i.fa-circle, body nav #navbar-toggle i .fa-ellipsis-h {
   transition: all 0.5s;
 }
-body nav #navbar-toggle .circle-grows {
+body nav #navbar-toggle i.dots-turn {
+  transform: rotate(720deg);
+  opacity: 0;
+}
+body nav #navbar-toggle i.circle-grows {
   opacity: 1;
   transform: scale(1);
   transition-delay: 0.4s;
 }
-body nav #navbar-toggle .circle-shrinks {
+body nav #navbar-toggle i.circle-shrinks {
   opacity: 0;
   transform: scale(0);
   transition-delay: none;
-}
-body nav #navbar-toggle .fa-ellipsis-h {
-  transition: all 0.5s;
-}
-body nav #navbar-toggle .dots-turn {
-  transform: rotate(720deg);
-  opacity: 0;
 }
 body section {
   width: 100%;
@@ -16256,7 +16269,7 @@ body section .inner-section .under-section {
   margin: 10vh 0;
   width: 100%;
 }
-body #home {
+body section#home {
   height: 100%;
   background: url("./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg") no-repeat;
   background-size: cover;
@@ -16264,58 +16277,66 @@ body #home {
   position: relative;
   filter: grayscale(10%);
 }
-body #home .inner-section {
+body section#home .inner-section {
   height: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color: rgba(44, 28, 28, 0.25);
 }
-body #home .inner-section #main-title-box {
-  margin-top: 100px;
-  padding: 20px;
-  text-shadow: 2px 2px 3px var(--dark);
-}
-body #home .inner-section #main-title-box #main-title h1 {
-  font-size: 4rem;
-  font-weight: 900;
-}
-body #home .inner-section #main-title-box #main-title h1 em {
-  font-style: normal;
-  font-family: "Saira Stencil";
-  font-weight: normal;
-}
-body #home .inner-section #main-title-box #function h5 {
-  font-family: "NothingYou";
-  margin-top: 50px;
-  font-size: 2rem;
-  font-weight: 700;
-}
-body #home .inner-section .wing {
+body section#home .inner-section .wing {
   margin-top: 75px;
   height: fit-content;
   opacity: 0;
 }
-body #home .inner-section .wing svg {
+body section#home .inner-section .wing svg {
   transform: rotateY(-100deg);
   transform-origin: 200% bottom;
   opacity: 0;
   transition: transform 1.3s, opacity 3s;
 }
-body #home .inner-section .wing svg.deployWings {
+body section#home .inner-section .wing svg .triangle {
+  fill: var(--white);
+}
+body section#home .inner-section .wing svg.deployWings {
   transform: rotateY(-10deg);
   opacity: 1;
 }
-body #home .inner-section .wing svg.moveWings {
+body section#home .inner-section .wing svg.moveWings {
   animation: moveWings 0.8s infinite alternate;
 }
-body #home .inner-section .wing .triangle {
-  fill: var(--white);
+@keyframes moveWings {
+  from {
+    transform: rotateY(-60deg) scale(0.9);
+  }
+  to {
+    transform: rotateY(30deg) scale(1.1);
+  }
 }
-body #home .inner-section .wing#wingRight {
+body section#home .inner-section .wing#wingRight {
   transform: rotateY(180deg);
 }
-body #home .inner-section #home-footer {
+body section#home .inner-section #main-title-box {
+  margin-top: 100px;
+  padding: 20px;
+  text-shadow: 2px 2px 3px var(--dark);
+}
+body section#home .inner-section #main-title-box #main-title h1 {
+  font-size: 4rem;
+  font-weight: 900;
+}
+body section#home .inner-section #main-title-box #main-title h1 em {
+  font-style: normal;
+  font-family: "Saira Stencil";
+  font-weight: normal;
+}
+body section#home .inner-section #main-title-box #function h5 {
+  font-family: "NothingYou";
+  margin-top: 50px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+body section#home .inner-section #home-footer {
   position: absolute;
   bottom: 0;
   height: fit-content;
@@ -16325,70 +16346,70 @@ body #home .inner-section #home-footer {
   justify-content: space-between;
   overflow: hidden;
 }
-body #home .inner-section #home-footer .footer-item {
+body section#home .inner-section #home-footer .footer-item {
   margin: 1vw 5vw;
 }
-body #home .inner-section #home-footer #social a {
+body section#home .inner-section #home-footer .footer-item#social a {
   text-decoration: none;
   color: var(--white);
   margin: 0 10px;
   padding: 10px;
 }
-body #home .inner-section #home-footer #social a:hover {
+body section#home .inner-section #home-footer .footer-item#social a i {
+  transition: transform 0.3s;
+}
+body section#home .inner-section #home-footer .footer-item#social a:hover {
   color: var(--light);
   filter: saturate(6);
 }
-body #home .inner-section #home-footer #social a i {
-  transition: transform 0.3s;
-}
-body #home .inner-section #home-footer #copyright {
+body section#home .inner-section #home-footer .footer-item#copyright {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
 }
-body #home .inner-section #home-footer #copyright span {
+body section#home .inner-section #home-footer .footer-item#copyright span {
   font-size: small;
   font-family: "Saira Condensed";
   margin-top: 3px;
 }
-body #home .inner-section #home-footer #copyright span.underline {
-  text-decoration: underline;
-}
-body #home .inner-section #home-footer #copyright span.credits {
-  transform: translateX(500%);
-}
-body #home .inner-section #home-footer #copyright span a {
-  text-decoration: none;
-  color: var(--light);
-}
-body #home .inner-section #home-footer #copyright span#copyrightSpan {
+body section#home .inner-section #home-footer .footer-item#copyright span#copyrightSpan {
   text-align: end;
   transform: translateX(0%) rotate(-90deg);
   transform-origin: top right;
 }
-body #about #introduction img {
+body section#home .inner-section #home-footer .footer-item#copyright span.underline {
+  text-decoration: underline;
+}
+body section#home .inner-section #home-footer .footer-item#copyright span.credits {
+  transform: translateX(500%);
+}
+body section#home .inner-section #home-footer .footer-item#copyright span a {
+  text-decoration: none;
+  color: var(--light);
+}
+body section#about .inner-section #introduction img {
   filter: sepia(100%);
 }
-body #about #introduction #location {
+body section#about .inner-section #introduction #location {
   color: var(--color);
 }
-body #about #introduction .pluses {
+body section#about .inner-section #introduction .pluses {
   justify-content: space-between;
   align-items: center;
   margin: 30px 0;
 }
-body #about #introduction .pluses a {
+body section#about .inner-section #introduction .pluses a {
   width: 10%;
   display: flex;
   justify-content: center;
   text-decoration: none;
   color: var(--color);
 }
-body #about #introduction .pluses p {
+body section#about .inner-section #introduction .pluses p {
   margin: 0;
   width: 70%;
 }
-body #about #interests .interests-item {
+body section#about .inner-section #interests .interests-item {
   width: 23%;
   margin: 0 5%;
   background-color: var(--color);
@@ -16399,42 +16420,39 @@ body #about #interests .interests-item {
   justify-content: center;
   transition: background-color 3s;
 }
-body #about #interests .interests-item .icon {
-  width: 20%;
-}
-body #about #interests .interests-item .label {
-  width: 70%;
-}
-body #about #interests .interests-item:hover {
+body section#about .inner-section #interests .interests-item:hover {
   transition: 0.3s;
   background: linear-gradient(to right, transparent 50%, var(--color));
 }
-body #resume .cubeBlock {
-  display: block !important;
+body section#about .inner-section #interests .interests-item .icon {
+  width: 20%;
 }
-body #resume #experience {
+body section#about .inner-section #interests .interests-item .label {
+  width: 70%;
+}
+body section#resume .under-section#experience {
   display: flex;
   justify-content: space-around;
 }
-body #resume #experience .col {
+body section#resume .under-section#experience .col {
   display: flex;
   height: 50vh;
   align-items: center;
   justify-content: center;
 }
-body #resume #experience .cube-container {
+body section#resume .under-section#experience .col .cube-container {
   width: 20vw;
   height: 20vw;
   perspective: 60vw;
 }
-body #resume #experience .cube-container .cube {
+body section#resume .under-section#experience .col .cube-container .cube {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
   transform: translateZ(-10vw);
 }
-body #resume #experience .cube-container .cube .cube-face {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face {
   background-color: var(--white);
   opacity: 0.5;
   color: var(--color);
@@ -16450,53 +16468,53 @@ body #resume #experience .cube-container .cube .cube-face {
   align-items: center;
   justify-content: space-around;
 }
-body #resume #experience .cube-container .cube .cube-face .cover {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face .cover {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 10;
   background: linear-gradient(var(--dark), var(--color), var(--light));
 }
-body #resume #experience .cube-container .cube .cube-face.front {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.front {
   transform: rotateY(0deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face.right {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.right {
   transform: rotateY(90deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face.back {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.back {
   transform: rotateY(180deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face.left {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.left {
   transform: rotateY(-90deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face.top, body #resume #experience .cube-container .cube .cube-face.bottom {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.top, body section#resume .under-section#experience .col .cube-container .cube .cube-face.bottom {
   background-color: var(--color);
   color: var(--white);
 }
-body #resume #experience .cube-container .cube .cube-face.top {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.top {
   transform: rotateX(90deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face.bottom {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face.bottom {
   transform: rotateX(-90deg) translateZ(10vw);
 }
-body #resume #experience .cube-container .cube .cube-face:hover {
+body section#resume .under-section#experience .col .cube-container .cube .cube-face:hover {
   opacity: 1 !important;
 }
-body #resume #experience #list-experience {
+body section#resume .under-section#experience #list-experience {
   width: 40%;
   display: none;
 }
-body #resume #experience #list-experience.appears {
+body section#resume .under-section#experience #list-experience.appears {
   display: flex !important;
 }
-body #resume #experience #list-experience #slider {
+body section#resume .under-section#experience #list-experience #slider {
   position: relative;
   overflow: hidden;
   height: 60vh;
   display: flex;
   width: 100%;
 }
-body #resume #experience #list-experience .slider-next {
+body section#resume .under-section#experience #list-experience .slider-next {
   z-index: 15;
   position: absolute;
   left: 90%;
@@ -16506,280 +16524,22 @@ body #resume #experience #list-experience .slider-next {
   background: none;
   border: none;
 }
-body #resume #experience #list-experience .slider-next:focus {
+body section#resume .under-section#experience #list-experience .slider-next:focus {
   outline: none;
 }
-body #resume #experience #list-experience .slider-next:hover {
+body section#resume .under-section#experience #list-experience .slider-next:hover {
   color: var(--light);
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
 }
-body #resume #experience #list-experience .experience-list-item {
+body section#resume .under-section#experience #list-experience .experience-list-item {
   position: absolute;
   display: none;
   flex-direction: column;
 }
-body #resume #experience #list-experience .experience-list-item.translate-next {
+body section#resume .under-section#experience #list-experience .experience-list-item.translate-next {
   animation: next 0.4s forwards linear;
 }
-body #resume #experience #list-experience .experience-list-item.out-next {
-  animation: outNext 0.4s forwards linear;
-}
-body #resume #experience #list-experience .experience-list-item.active {
-  display: flex;
-}
-body #resume #experience #list-experience .experience-list-item h3 {
-  color: var(--light);
-}
-body #resume #experience #list-experience .experience-list-item h5 {
-  color: var(--white);
-  text-shadow: 2px 2px 3px var(--color);
-}
-body #resume #experience #list-experience .experience-list-item span {
-  color: var(--color);
-}
-body #resume #experience #list-experience .experience-list-item p {
-  color: var(--white);
-}
-body #resume #skills {
-  display: none;
-}
-body #resume #skills .line {
-  fill: black;
-}
-body #resume #skills .stroke {
-  stroke: black;
-}
-body #resume #skills .row {
-  position: relative;
-  height: 50vh;
-}
-body #resume #skills .row .skill-item {
-  position: absolute;
-  color: black;
-  transition: 0.4s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body #resume #skills .row .skill-item:hover {
-  filter: saturate(6);
-  z-index: 8;
-}
-body #resume #skills .row .skill-item:nth-child(1) {
-  top: 50%;
-  left: 50%;
-}
-body #resume #skills .row .skill-item:nth-child(2) {
-  top: 20%;
-  left: 10%;
-}
-body #resume #skills .row .skill-item:nth-child(3) {
-  top: 20%;
-  left: 60%;
-}
-body #resume #skills .row .skill-item:nth-child(4) {
-  top: 20%;
-  left: 10%;
-}
-body #resume #skills .row .skill-item:nth-child(5) {
-  top: 40%;
-  left: 90%;
-}
-body #resume #skills .row .skill-item:nth-child(6) {
-  top: 65%;
-  left: 35%;
-}
-body #resume #skills .row .skill-item:nth-child(7) {
-  top: 35%;
-  left: 75%;
-}
-body #resume #skills .row .skill-item:nth-child(8) {
-  top: 50%;
-  left: 20%;
-}
-body #resume #skills .row .skill-item:nth-child(9) {
-  top: 70%;
-  left: 80%;
-}
-body #resume #skills .row .skill-item:nth-child(10) {
-  top: 75%;
-  left: 5%;
-}
-body #resume #skills .row .skill-item:nth-child(11) {
-  top: 65%;
-  left: 65%;
-}
-body #resume #skills .row .skill-item:nth-child(12) {
-  top: 10%;
-  left: 40%;
-}
-body #resume #skills .row .skill-item.four {
-  color: goldenrod;
-}
-body #resume #skills .row .skill-item.four:hover {
-  transform: scale(4);
-}
-body #resume #skills .row .skill-item.three {
-  color: lightcoral;
-}
-body #resume #skills .row .skill-item.three:hover {
-  transform: scale(3);
-}
-body #resume #skills .row .skill-item.two {
-  color: lightblue;
-}
-body #resume #skills .row .skill-item.two:hover {
-  transform: scale(2);
-}
-body #resume #skills .row .skill-item.one {
-  color: silver;
-}
-body #resume #skills .row .skill-item.one .line {
-  fill: silver;
-}
-body #resume #skills .row .skill-item.one .stroke {
-  stroke: silver;
-}
-body #resume #skills .row .skill-item.one:hover {
-  transform: scale(1.4);
-  color: grey;
-}
-body #resume #skills .row .skill-item.one:hover .line {
-  fill: grey;
-}
-body #resume #skills .row .skill-item.one:hover .stroke {
-  stroke: grey;
-}
-body #resume #skills .row .skill-item .logo {
-  position: absolute;
-  transition: 0.3s;
-}
-body #resume #skills .row .skill-item .level {
-  opacity: 0;
-  transition: 0.3s;
-}
-body #resume #languages {
-  display: none;
-}
-body #resume #languages .lg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: 0.3s;
-}
-body #resume #languages .lg .chart-container {
-  opacity: 0;
-  transition: 0.4s;
-}
-body #resume #languages .lg .chart-container:hover .back {
-  stroke: #23150c;
-}
-body #resume #languages .lg .chart-container:hover .front {
-  stroke: #CB8D63;
-}
-body #resume #languages .lg .chart-container:hover text {
-  fill: #CB8D63;
-}
-body #resume #languages .lg .chart-container:hover text.european {
-  opacity: 1;
-}
-body #resume #languages .lg .chart-container:hover text.european#french {
-  font-size: 16px;
-}
-body #resume #languages .lg .chart-container:hover text.out-of-5 {
-  opacity: 0;
-}
-body #resume #languages .lg .chart-container .back, body #resume #languages .lg .chart-container .front, body #resume #languages .lg .chart-container .text, body #resume #languages .lg .chart-container text {
-  transition: 0.4s;
-}
-body #resume #languages .lg .chart-container .back {
-  stroke: gray;
-  stroke-width: 10;
-}
-body #resume #languages .lg .chart-container .front {
-  stroke: white;
-  stroke-width: 10;
-  stroke-linecap: round;
-  transform: rotate(-90deg);
-  transform-origin: center;
-  animation-duration: 2s !important;
-}
-body #resume #languages .lg .chart-container .text {
-  font-size: 32px;
-  fill: white;
-  opacity: 0;
-  transition: all 0.3s;
-}
-body #resume #languages .lg .chart-container .text .european {
-  opacity: 0;
-}
-body #resume #languages .lg:nth-child(3) .front {
-  animation-duration: 1.6s !important;
-}
-body #resume #languages .lg:nth-child(4) .front {
-  animation-duration: 1.2s !important;
-}
-body #folio {
-  flex-direction: column;
-}
-body #folio .section-title {
-  height: 30vh;
-}
-body #folio #construction {
-  width: 100%;
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 30vh;
-}
-body #folio #construction h5 {
-  font-family: "Homemade";
-  font-size: 3rem;
-}
-body #folio #construction h1 {
-  font-family: "Yeon";
-  font-size: 5rem;
-}
-body #folio #construction .painted {
-  color: var(--color);
-}
-body #contact input, body #contact textarea {
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  color: var(--white);
-}
-body #contact input:focus, body #contact textarea:focus {
-  outline: none;
-  caret-color: var(--light);
-  border-color: var(--color);
-  color: var(--color);
-}
-body #contact input {
-  margin: 20px 0;
-  border-bottom: var(--white) 2px solid;
-}
-body #contact input::placeholder {
-  color: var(--light);
-}
-body #contact input#submit {
-  transition: 0.3s;
-}
-body #contact input#submit:hover {
-  color: var(--color);
-  border-color: var(--color);
-  transform: scale(1.4);
-}
-body #contact textarea {
-  resize: none;
-  margin-top: 30px;
-  border-left: var(--white) 2px solid;
-}
-
 @keyframes next {
   from {
     transform: translateX(100%);
@@ -16787,6 +16547,9 @@ body #contact textarea {
   to {
     transform: translateX(0%);
   }
+}
+body section#resume .under-section#experience #list-experience .experience-list-item.out-next {
+  animation: outNext 0.4s forwards linear;
 }
 @keyframes outNext {
   from {
@@ -16796,42 +16559,266 @@ body #contact textarea {
     transform: translateX(-100%);
   }
 }
+body section#resume .under-section#experience #list-experience .experience-list-item.active {
+  display: flex;
+}
+body section#resume .under-section#experience #list-experience .experience-list-item h3 {
+  color: var(--light);
+}
+body section#resume .under-section#experience #list-experience .experience-list-item h5 {
+  color: var(--white);
+  text-shadow: 2px 2px 3px var(--color);
+}
+body section#resume .under-section#experience #list-experience .experience-list-item span {
+  color: var(--color);
+}
+body section#resume .under-section#experience #list-experience .experience-list-item p {
+  color: var(--white);
+}
+body section#resume .under-section.cubeBlock {
+  display: block !important;
+}
+body section#resume .under-section#skills {
+  display: none;
+}
+body section#resume .under-section#skills .row {
+  position: relative;
+  height: 50vh;
+}
+body section#resume .under-section#skills .row .skill-item {
+  position: absolute;
+  color: black;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body section#resume .under-section#skills .row .skill-item:hover {
+  filter: saturate(6);
+  z-index: 8;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(1) {
+  top: 50%;
+  left: 50%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(2) {
+  top: 20%;
+  left: 10%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(3) {
+  top: 20%;
+  left: 60%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(4) {
+  top: 20%;
+  left: 10%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(5) {
+  top: 40%;
+  left: 90%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(6) {
+  top: 65%;
+  left: 35%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(7) {
+  top: 35%;
+  left: 75%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(8) {
+  top: 50%;
+  left: 20%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(9) {
+  top: 70%;
+  left: 80%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(10) {
+  top: 75%;
+  left: 5%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(11) {
+  top: 65%;
+  left: 65%;
+}
+body section#resume .under-section#skills .row .skill-item:nth-child(12) {
+  top: 10%;
+  left: 40%;
+}
+body section#resume .under-section#skills .row .skill-item.four {
+  color: goldenrod;
+}
+body section#resume .under-section#skills .row .skill-item.four:hover {
+  transform: scale(4);
+}
+body section#resume .under-section#skills .row .skill-item.three {
+  color: lightcoral;
+}
+body section#resume .under-section#skills .row .skill-item.three:hover {
+  transform: scale(3);
+}
+body section#resume .under-section#skills .row .skill-item.two {
+  color: lightblue;
+}
+body section#resume .under-section#skills .row .skill-item.two:hover {
+  transform: scale(2);
+}
+body section#resume .under-section#skills .row .skill-item.one {
+  color: silver;
+}
+body section#resume .under-section#skills .row .skill-item.one .line {
+  fill: silver;
+}
+body section#resume .under-section#skills .row .skill-item.one .stroke {
+  stroke: silver;
+}
+body section#resume .under-section#skills .row .skill-item.one:hover {
+  transform: scale(1.4);
+  color: grey;
+}
+body section#resume .under-section#skills .row .skill-item.one:hover .line {
+  fill: grey;
+}
+body section#resume .under-section#skills .row .skill-item.one:hover .stroke {
+  stroke: grey;
+}
+body section#resume .under-section#skills .row .skill-item .logo {
+  position: absolute;
+  transition: 0.3s;
+}
+body section#resume .under-section#skills .row .skill-item .level {
+  opacity: 0;
+  transition: 0.3s;
+}
+body section#resume .under-section#languages {
+  display: none;
+}
+body section#resume .under-section#languages .lg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.3s;
+}
+body section#resume .under-section#languages .lg .chart-container {
+  opacity: 0;
+  transition: 0.4s;
+}
+body section#resume .under-section#languages .lg .chart-container:hover .back {
+  stroke: #23150c;
+}
+body section#resume .under-section#languages .lg .chart-container:hover .front {
+  stroke: #CB8D63;
+}
+body section#resume .under-section#languages .lg .chart-container:hover text {
+  fill: #CB8D63;
+}
+body section#resume .under-section#languages .lg .chart-container:hover text.european {
+  opacity: 1;
+}
+body section#resume .under-section#languages .lg .chart-container:hover text.european#french {
+  font-size: 16px;
+}
+body section#resume .under-section#languages .lg .chart-container:hover text.out-of-5 {
+  opacity: 0;
+}
+body section#resume .under-section#languages .lg .chart-container .back, body section#resume .under-section#languages .lg .chart-container .front, body section#resume .under-section#languages .lg .chart-container .text, body section#resume .under-section#languages .lg .chart-container text {
+  transition: 0.4s;
+}
+body section#resume .under-section#languages .lg .chart-container .back {
+  stroke: gray;
+  stroke-width: 10;
+}
+body section#resume .under-section#languages .lg .chart-container .front {
+  stroke: white;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation-duration: 2s !important;
+}
 @keyframes fillCircle {
   to {
     stroke-dasharray: 0, 1000000;
   }
+}
+body section#resume .under-section#languages .lg .chart-container .text {
+  font-size: 32px;
+  fill: white;
+  opacity: 0;
+  transition: all 0.3s;
+}
+body section#resume .under-section#languages .lg .chart-container .text .european {
+  opacity: 0;
 }
 @keyframes displayGrade {
   to {
     opacity: 1;
   }
 }
-@keyframes moveWings {
-  from {
-    transform: rotateY(-60deg) scale(0.9);
-  }
-  to {
-    transform: rotateY(30deg) scale(1.1);
-  }
+body section#resume .under-section#languages .lg:nth-child(3) .front {
+  animation-duration: 1.6s !important;
 }
-@keyframes slideTop {
-  from {
-    transform: translateY(-100%);
-  }
-  40% {
-    transform: translateY(0%);
-  }
+body section#resume .under-section#languages .lg:nth-child(4) .front {
+  animation-duration: 1.2s !important;
 }
-@keyframes slideRight {
-  from {
-    transform: translateX(100%);
-  }
-  30% {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
+body section#folio {
+  flex-direction: column;
+}
+body section#folio .section-title {
+  height: 30vh;
+}
+body section#folio #construction {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30vh;
+}
+body section#folio #construction h5 {
+  font-family: "Homemade";
+  font-size: 3rem;
+}
+body section#folio #construction h1 {
+  font-family: "Yeon";
+  font-size: 5rem;
+}
+body section#folio #construction .painted {
+  color: var(--color);
+}
+body section#contact input, body section#contact textarea {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: var(--white);
+}
+body section#contact input:focus, body section#contact textarea:focus {
+  outline: none;
+  caret-color: var(--light);
+  border-color: var(--color);
+  color: var(--color);
+}
+body section#contact input {
+  margin: 20px 0;
+  border-bottom: var(--white) 2px solid;
+}
+body section#contact input::placeholder {
+  color: var(--light);
+}
+body section#contact input#submit {
+  transition: 0.3s;
+}
+body section#contact input#submit:hover {
+  color: var(--color);
+  border-color: var(--color);
+  transform: scale(1.4);
+}
+body section#contact textarea {
+  resize: none;
+  margin-top: 30px;
+  border-left: var(--white) 2px solid;
 }
 
 /*# sourceMappingURL=app.css.map */
