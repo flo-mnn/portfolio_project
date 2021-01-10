@@ -16073,7 +16073,7 @@ body #loading-page .flap {
   width: 100%;
   height: 50%;
 }
-body #loading-page .flap#flap-top, body #loading-page .flap #flap-bottom {
+body #loading-page .flap#flap-top, body #loading-page .flap#flap-bottom {
   background-color: var(--dark);
   transition: background-color 0.3s;
 }
@@ -16217,7 +16217,7 @@ body nav #navbar-toggle:focus {
 body nav #navbar-toggle i {
   position: absolute;
 }
-body nav #navbar-toggle i.fa-circle, body nav #navbar-toggle i .fa-ellipsis-h {
+body nav #navbar-toggle i.fa-circle, body nav #navbar-toggle i.fa-ellipsis-h {
   transition: all 0.5s;
 }
 body nav #navbar-toggle i.dots-turn {
@@ -16596,6 +16596,12 @@ body section#resume .under-section#skills .row .skill-item {
 body section#resume .under-section#skills .row .skill-item:hover {
   filter: saturate(6);
   z-index: 8;
+}
+body section#resume .under-section#skills .row .skill-item:hover .logo {
+  opacity: 0;
+}
+body section#resume .under-section#skills .row .skill-item:hover .level {
+  opacity: 1;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(1) {
   top: 50%;
