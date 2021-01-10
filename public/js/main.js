@@ -194,7 +194,7 @@ let removeOnDisplay = () => {
 
 // change page
 let changeSection = () => {
-  for (let i = 0; i < navItems.length; i++) {
+  for (let i = 0; i < navItems.length -1; i++) { //-1 remove FR click
     navItems[i].addEventListener('click',function(e){
       e.preventDefault();
       loader.classList.add('load-page');
@@ -501,3 +501,47 @@ window.addEventListener('scroll',loadCircles)
 // paint letters
 paintLetter(t1);
 paintLetter(t2);
+
+
+
+// BILINGUAL
+let allToTranslate = [document.querySelector('#function').querySelectorAll('h5'),document.querySelectorAll('.rights'),document.querySelectorAll('.section-title-text'),document.querySelectorAll('#location'),document.querySelectorAll('.intro-text'),document.querySelectorAll('.quality'),document.querySelectorAll('.interest'),document.querySelectorAll('.experience-position'),document.querySelectorAll('.company-name'),document.querySelectorAll('.date'),document.querySelectorAll('.xp-description'),document.querySelectorAll('.level'),document.querySelectorAll(".language"),document.querySelectorAll('#french'),document.querySelectorAll('textarea')]; allToTranslate.flat();
+
+let allToTranslateNew = [];
+for (let i = 0; i < allToTranslate.length; i++) {
+  allToTranslateNew.push(Array.from(allToTranslate[i]));
+};
+allToTranslateNew = allToTranslateNew.flat();
+
+// stock english version
+let english = [];
+for (let i = 0; i < allToTranslateNew.length; i++) {
+  english.push(allToTranslateNew[i].textContent);
+  // console.log(allToTranslateNew[i].textContent);
+};
+// translation
+let french = ["Je suis Web Développeuse",`Tous droits réservés.`,"Salut, moi c'est Florence","Mon upload de connaissances","Jetez-y un oeil","Contactez-moi","Bruxelles, Belgique","Salut ! Je m\'appelle Florence et je suis une jeune développeuse web. J\'ai étudié la traduction à l\'université avant de travaille comme réceptionniste dans un hôtel. Quand la Covid-19 a frappé, j\'ai réalisé qu\'il était temps pour moi d'explorer davantage ma créativité.","J\'ai toujours aimé créer des choses, des montages photos de mon skyblog d\'ado à la couture, en passant par le tricot, les DIY en tout genre, le dessin... Et maintenant, c\'est au design et développement web que je m\'attele !","Précision","Ponctualité","Disponible","Livres","DIY","Langues","Voyages","Écologie","Droits des Femmes","CodingSchool","Master en Traduction","Stagiaire","MolenGeek","Université de Bruxelles","Éditions Jourdan","Septembre 2020 - Mars 2021","Septembre 2020 - Mars 2021","Septembre 2020 - Mars 2021","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","avancée","intermédiaire","intermédiaire","expérimentée","bases","expérimentée","expérimentée","expérimentée","expérimentée","avancée","bases","bases","anglais","français","russe","néerlandais","Langue Maternelle","Chère Florence"];
+
+
+let switchLg = document.querySelector('#switchLg');
+let loadLg = (lg) => {
+  for (let i = 0; i < allToTranslateNew.length; i++) {
+    allToTranslateNew[i].textContent = lg[i];
+  };
+};
+
+if (navigator.language.includes('fr')) {
+  loadLg(french);
+  switchLg.textContent = "en";
+};
+
+switchLg.addEventListener('click',function(e){
+  e.preventDefault();
+  if (switchLg.textContent === "fr") {
+    loadLg(french);
+    switchLg.textContent = "en";
+  } else {
+    loadLg(english);
+    switchLg.textContent = "fr";
+  };
+});

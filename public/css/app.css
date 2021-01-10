@@ -16362,6 +16362,19 @@ body {
   color: var(--white);
   font-family: "Saira" !important;
 }
+body::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--light);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  opacity: 0.5;
+}
 body #loading-page {
   display: none;
   position: fixed;
@@ -17128,6 +17141,20 @@ body section#contact textarea {
   resize: none;
   margin-top: 30px;
   border-left: var(--white) 2px solid;
+}
+body section#contact textarea::-webkit-scrollbar {
+  width: 15px;
+  /* width of the entire scrollbar */
+}
+body section#contact textarea::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+body section#contact textarea::-webkit-scrollbar-thumb {
+  background-color: var(--light);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  opacity: 0.5;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=app.css.map */
