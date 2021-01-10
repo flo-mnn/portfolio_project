@@ -16343,13 +16343,14 @@ h3 {
   }
 }
 :root {
-  --color: #CB8D63;
-  --dark: #4D433C;
-  --light: #d4c0b3;
+  --color: ;
+  --dark: ;
+  --light: ;
   --white: white;
   font-size: 16px;
   margin: 0;
   padding: 0;
+  transition: 0.2s;
 }
 
 body {
@@ -16450,6 +16451,20 @@ body nav #logo {
   position: absolute;
   left: 4vw;
   z-index: 15;
+  transition: 0.2s;
+  transform-origin: center;
+}
+body nav #logo.click {
+  animation: cta 0.3s infinite alternate;
+  animation-delay: 1.3s;
+}
+@keyframes cta {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }
 body nav #logo:hover #M {
   animation: slideTop 0.8s forwards;
@@ -16587,9 +16602,6 @@ body section .inner-section .under-section {
 }
 body section#home {
   height: 100%;
-  background: url("./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg") no-repeat;
-  background-size: cover;
-  background-position: top center;
   position: relative;
   filter: grayscale(10%);
 }
@@ -17026,13 +17038,13 @@ body section#resume .under-section#languages .lg .chart-container {
   transition: 0.4s;
 }
 body section#resume .under-section#languages .lg .chart-container:hover .back {
-  stroke: #23150c;
+  stroke: gray;
 }
 body section#resume .under-section#languages .lg .chart-container:hover .front {
-  stroke: #CB8D63;
+  stroke: var(--color);
 }
 body section#resume .under-section#languages .lg .chart-container:hover text {
-  fill: #CB8D63;
+  fill: var(--color);
 }
 body section#resume .under-section#languages .lg .chart-container:hover text.european {
   opacity: 1;

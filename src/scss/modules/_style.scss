@@ -1,13 +1,14 @@
 @import "./responsive";
 
 :root {
-    --color : #CB8D63;
-    --dark : #4D433C;
-    --light : #d4c0b3;
+    --color : ;
+    --dark :  ;
+    --light : ;
     --white : white;
     font-size: 16px;
     margin: 0;
     padding: 0;
+    transition: 0.2s;
 };
 body {
     margin: 0;
@@ -109,6 +110,20 @@ body {
             position: absolute;
             left: 4vw;
             z-index: 15;
+            transition: 0.2s;
+            transform-origin: center;
+            &.click {
+                animation: cta 0.3s infinite alternate;
+                animation-delay: 1.3s;
+                @keyframes cta {
+                    from{
+                        transform: scale(1);
+                    };
+                    to {
+                        transform: scale(1.2);
+                    };
+                }
+            };
             &:hover #M {
                 animation: slideTop 0.8s forwards;
                 @keyframes slideTop {
@@ -246,9 +261,9 @@ body {
         };
         &#home {
             height: 100%;
-            background: url('./../../../public/img/joshua-sortino-m5P0c6ABWDs-unsplash.jpg') no-repeat;
-            background-size: cover;
-            background-position: top center;
+            // background: url('./../../../public/img/oxa-roxa-bnFuB--1lE4-unsplash.jpg') no-repeat;
+            // background-size: cover;
+            // background-position: center;
             position: relative;
             filter: grayscale(10%);
             .inner-section {
@@ -714,13 +729,13 @@ body {
                             $shade: white;  //= var(--color)
                             &:hover {
                                 .back {
-                                    stroke: darken(#CB8D63,50%)
+                                    stroke: gray;
                                 };
                                 .front {
-                                    stroke: #CB8D63;
+                                    stroke: var(--color);
                                 };
                                 text {
-                                    fill: #CB8D63;
+                                    fill: var(--color);
                                     &.european{
                                         opacity: 1;
                                         &#french {

@@ -68,6 +68,38 @@ let brush = document.createElement('i');
 brush.setAttribute('class',"fas fa-paint-brush fa-2x");
 brush.style.color = "var(--color)";
 
+// themes
+let themeSand = {
+  name: "sand",
+  url: "joshua-sortino-m5P0c6ABWDs-unsplash.jpg",
+  bgPosition: "top center",
+  bgSize: "cover",
+  color:  "#CB8D63",
+  light: "#d4c0b3",
+  dark: "#4D433C",
+};
+let themePink = {
+  name: "sunset",
+  url: "samuel-ferrara-dKJXkKCF2D8-unsplash.jpg",
+  bgPosition: "center",
+  bgSize: "cover",
+  color:  "#B77973",
+  light: "#d4c0b3",
+  dark: "#855854",
+};
+let themeBee = {
+  name: "bee",
+  url: "oxa-roxa-bnFuB--1lE4-unsplash.jpg",
+  bgPosition: "center",
+  bgSize: "cover",
+  color:  "#e7ad4a",
+  light: "#C1A96B",
+  dark: "#5D633C",
+};
+let allThemes = [themeSand,themeBee,themePink];
+let logo = document.querySelector('#logo');
+
+
 // // FUNCTIONS
 
 // cursor location
@@ -415,6 +447,27 @@ let paintLetter = (title) => {
   };
 };
 
+let changeTheme = (theme) => {
+  let home = document.querySelector('#home');
+  home.style.background = `url('./../../../public/img/${theme.url}') no-repeat`;
+  home.style.backgroundPosition = theme.bgPosition;
+  home.style.backgroundSize = theme.bgSize;
+  document.documentElement.style.setProperty('--color', theme.color);
+  document.documentElement.style.setProperty('--light', theme.light);
+  document.documentElement.style.setProperty('--dark', theme.dark);
+  if (theme === themePink) {
+   let imageMe = document.querySelector("#introduction").querySelector('img');
+   imageMe.style.filter = "unset";
+  //  filter: sepia(100%);
+  }
+};
+
+let addCta = () => {
+  logo.classList.add('click');
+};
+let removeCta = () => {
+  logo.classList.remove('click');
+};
 
 // // EVENT LISTENERS & call functions
 // window.addEventListener('resize', reportWindowSize);
@@ -502,10 +555,62 @@ window.addEventListener('scroll',loadCircles)
 paintLetter(t1);
 paintLetter(t2);
 
+// themes
+let currentTheme;
+window.addEventListener('DOMContentLoaded',function(){
+  let randomTheme = Math.floor(Math.random()*allThemes.length);
+  currentTheme = randomTheme;
+  changeTheme(allThemes[currentTheme]);
+  console.log(currentTheme);
+});
+
+let themePreview;
+let themePreviewCompt = 0;
+
+logo.addEventListener('mouseenter',function(e){
+  e.stopPropagation();
+  console.log(currentTheme);
+  themePreview = currentTheme + themePreviewCompt +1;
+  if (themePreview >= allThemes.length) {
+    themePreview = themePreviewCompt;
+  };
+  console.log(themePreview);
+  addCta();
+  setTimeout(() => {
+    changeTheme(allThemes[themePreview]);
+  }, 500);
+  themePreviewCompt ++;
+  if (themePreviewCompt === 2) {
+    themePreviewCompt = 0;
+  };
+});
+logo.addEventListener('mouseleave',function(){
+  setTimeout(() => {
+    changeTheme(allThemes[currentTheme]);
+    removeCta();
+  }, 500);
+});
+logo.addEventListener('click',function () {
+  changeTheme(allThemes[themePreview]);
+  currentTheme = themePreview;
+  console.log(currentTheme);
+  themePreviewCompt = 0;
+  // svg color
+  let letters = logo.querySelector('svg');
+  letters.style.fill = "var(--color)";
+  setTimeout(() => {
+    letters.style.fill = "var(--white)";
+  }, 2000);
+
+});
+
+
+
+
 
 
 // BILINGUAL
-let allToTranslate = [document.querySelector('#function').querySelectorAll('h5'),document.querySelectorAll('.rights'),document.querySelectorAll('.section-title-text'),document.querySelectorAll('#location'),document.querySelectorAll('.intro-text'),document.querySelectorAll('.quality'),document.querySelectorAll('.interest'),document.querySelectorAll('.experience-position'),document.querySelectorAll('.company-name'),document.querySelectorAll('.date'),document.querySelectorAll('.xp-description'),document.querySelectorAll('.level'),document.querySelectorAll(".language"),document.querySelectorAll('#french'),document.querySelectorAll('textarea')]; allToTranslate.flat();
+let allToTranslate = [document.querySelector('#function').querySelectorAll('h5'),document.querySelectorAll('.rights'),document.querySelectorAll('.section-title-text'),document.querySelectorAll('#location-text'),document.querySelectorAll('.intro-text'),document.querySelectorAll('.quality'),document.querySelectorAll('.interest'),document.querySelectorAll('.experience-position'),document.querySelectorAll('.company-name'),document.querySelectorAll('.date'),document.querySelectorAll('.xp-description'),document.querySelectorAll('.level'),document.querySelectorAll(".language"),document.querySelectorAll('#french'),document.querySelectorAll('textarea')]; allToTranslate.flat();
 
 let allToTranslateNew = [];
 for (let i = 0; i < allToTranslate.length; i++) {
@@ -520,7 +625,7 @@ for (let i = 0; i < allToTranslateNew.length; i++) {
   // console.log(allToTranslateNew[i].textContent);
 };
 // translation
-let french = ["Je suis Web Développeuse",`Tous droits réservés.`,"Salut, moi c'est Florence","Mon upload de connaissances","Jetez-y un oeil","Contactez-moi","Bruxelles, Belgique","Salut ! Je m\'appelle Florence et je suis une jeune développeuse web. J\'ai étudié la traduction à l\'université avant de travaille comme réceptionniste dans un hôtel. Quand la Covid-19 a frappé, j\'ai réalisé qu\'il était temps pour moi d'explorer davantage ma créativité.","J\'ai toujours aimé créer des choses, des montages photos de mon skyblog d\'ado à la couture, en passant par le tricot, les DIY en tout genre, le dessin... Et maintenant, c\'est au design et développement web que je m\'attele !","Précision","Ponctualité","Disponible","Livres","DIY","Langues","Voyages","Écologie","Droits des Femmes","CodingSchool","Master en Traduction","Stagiaire","MolenGeek","Université de Bruxelles","Éditions Jourdan","Septembre 2020 - Mars 2021","Septembre 2020 - Mars 2021","Septembre 2020 - Mars 2021","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","Within 6 months, a great team of coaches is there to guide you into the world of full-stack web development. In the heart of Brussels, with our team mates, we learn how to dive deeper into the web development world. First we ease in with HTML & CSS, then JS and his framework React, and after a final glance at PHP and Laravel they let us go swim on our own, as they taught us so well.","avancée","intermédiaire","intermédiaire","expérimentée","bases","expérimentée","expérimentée","expérimentée","expérimentée","avancée","bases","bases","anglais","français","russe","néerlandais","Langue Maternelle","Chère Florence"];
+let french = ["Développeuse Web",`Tous droits réservés.`,"Florence, enchantée !","Téléchargements en cours","Jetez-y un oeil","Contactez-moi","  Bruxelles, Belgique","Salut ! Je m\'appelle Florence et je suis une jeune développeuse web. J\'ai étudié la traduction à l\'université avant de travailler comme réceptionniste dans un hôtel. Quand la Covid-19 a frappé, j\'ai réalisé qu\'il était temps pour moi d'explorer davantage ma créativité.","J\'ai toujours aimé créer des choses, des montages photos de mon skyblog d\'ado à la couture, en passant par le tricot, les DIY en tout genre, le dessin... Et maintenant, c\'est au design et développement web que je m\'attele !","Précision","Ponctualité","Disponible","Livres","DIY","Langues","Voyages","Écologie","Droits des Femmes","CodingSchool","Master en Traduction","Stagiaire","MolenGeek","Université de Bruxelles","Éditions Jourdan","Septembre 2020 - Mars 2021","Septembre 2014 - Septembre 2019","Octobre 2018 - Janvier 2019","En seulement six mois, une équipe de coachs est là pour nous guider alors qu'on se lance éperdument dans le code. Au coeur de Bruxelles, nous travaillons sans relâche pour devenir full-stack web developer. Nous commençons en douceur avec HTML et CSS, puis nous passons à la base avec JavaScript et aussi son framework React, avant de plonger dans PHP et Laravel.",`J'ai eu la chance de passer cinq années à étudier les langues de Shakespeare, de Pouchkine, mais aussi et avant tout celle de Molière. Ici, à Bruxelles, mais aussi en Russie, pendant un échange riche en apprentissage. En cinq ans, j'ai pu apprendre l'art de la traduction, un art dans lequel Google Traduction n'est pas prêt de détrôner l'humain. Cet art est bien trop subtile.`,`Pendant un semestre, j'avais un peu le boulot de rêve. Passer ses journées à lire, évaluer et corriger des manuscrits... Plutôt cool, non ? Mais aussi gérer la publication d'articles sur leurs sites internet et même en rédiger certains. `,"avancée","intermédiaire","intermédiaire","expérimentée","bases","expérimentée","expérimentée","expérimentée","expérimentée","avancée","bases","bases","anglais","français","russe","néerlandais","Langue Maternelle","Chère Florence"];
 
 
 let switchLg = document.querySelector('#switchLg');
