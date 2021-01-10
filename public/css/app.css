@@ -16038,6 +16038,310 @@ h3 {
     border-color: #dee2e6;
   }
 }
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  body {
+    cursor: auto;
+  }
+  body nav .nav-menu {
+    width: 25vw !important;
+    height: 100vh !important;
+    position: absolute;
+    top: 0;
+    align-items: center !important;
+    justify-content: center;
+    flex-direction: column;
+  }
+  body nav .nav-menu.navbar-displayed {
+    transform: translateY(0%) translateX(0) !important;
+  }
+  body nav .nav-menu.navbar-hidden {
+    transform: translateY(0%) translateX(-100%) !important;
+  }
+  body nav .nav-menu #navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  body .cursor {
+    display: none;
+  }
+  body section .inner-section {
+    padding: 10vh 10% !important;
+  }
+  body section .inner-section .section-title {
+    height: 20vh !important;
+  }
+  body section .inner-section .under-section {
+    margin: 5vh 0 !important;
+  }
+  body section#home .wing {
+    display: none !important;
+  }
+  body section#home #home-footer {
+    height: 20vh !important;
+  }
+  body section#home #home-footer .footer-item {
+    position: absolute;
+  }
+  body section#home #home-footer .footer-item#social {
+    left: 2vw;
+  }
+  body section#home #home-footer .footer-item#copyright {
+    right: 5vw;
+  }
+  body section#about .inner-section #interests .interests-item {
+    width: 90% !important;
+  }
+  body section#resume .under-section#experience {
+    flex-direction: column;
+  }
+  body section#resume .under-section#experience #list-experience {
+    width: 100% !important;
+    display: none;
+  }
+  body section#resume .under-section#experience #list-experience #slider {
+    margin-top: 100px;
+    height: 400px !important;
+    width: 100%;
+  }
+  body section#resume .under-section#experience #list-experience .slider-next {
+    left: unset !important;
+    right: 5vw;
+    top: 60%;
+  }
+  body section#resume .under-section#skills {
+    display: none;
+  }
+  body section#resume .under-section#skills .row {
+    position: relative;
+    height: 100vh !important;
+  }
+  body section#resume .under-section#skills .row .skill-item {
+    position: absolute;
+    color: black;
+    transition: 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  body section#resume .under-section#skills .row .skill-item:hover {
+    filter: saturate(6);
+    z-index: 8;
+  }
+  body section#resume .under-section#skills .row .skill-item:hover .logo {
+    opacity: 0;
+  }
+  body section#resume .under-section#skills .row .skill-item:hover .level {
+    opacity: 1;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(1) {
+    top: 50%;
+    left: 50%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(2) {
+    top: 20%;
+    left: 5%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(3) {
+    top: 20%;
+    left: 60%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(4) {
+    top: 20%;
+    left: 10%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(5) {
+    top: 90% !important;
+    left: 20% !important;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(6) {
+    top: 65%;
+    left: 35%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(7) {
+    top: 35%;
+    left: 75%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(8) {
+    top: 50%;
+    left: 15%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(9) {
+    top: 80% !important;
+    left: 65% !important;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(10) {
+    top: 75%;
+    left: 5%;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(11) {
+    top: 5% !important;
+    left: 35% !important;
+  }
+  body section#resume .under-section#skills .row .skill-item:nth-child(12) {
+    top: 30%;
+    left: 35%;
+  }
+  body section#resume .under-section#skills .row .skill-item.four {
+    color: goldenrod;
+  }
+  body section#resume .under-section#skills .row .skill-item.four:hover {
+    transform: scale(4);
+  }
+  body section#resume .under-section#skills .row .skill-item.three {
+    color: lightcoral;
+  }
+  body section#resume .under-section#skills .row .skill-item.three:hover {
+    transform: scale(3);
+  }
+  body section#resume .under-section#skills .row .skill-item.two {
+    color: lightblue;
+  }
+  body section#resume .under-section#skills .row .skill-item.two:hover {
+    transform: scale(2);
+  }
+  body section#resume .under-section#skills .row .skill-item.one {
+    color: silver;
+  }
+  body section#resume .under-section#skills .row .skill-item.one .line {
+    fill: silver;
+  }
+  body section#resume .under-section#skills .row .skill-item.one .stroke {
+    stroke: silver;
+  }
+  body section#resume .under-section#skills .row .skill-item.one:hover {
+    transform: scale(1.4);
+    color: grey;
+  }
+  body section#resume .under-section#skills .row .skill-item.one:hover .line {
+    fill: grey;
+  }
+  body section#resume .under-section#skills .row .skill-item.one:hover .stroke {
+    stroke: grey;
+  }
+  body section#resume .under-section#skills .row .skill-item .logo {
+    position: absolute;
+    transition: 0.3s;
+  }
+  body section#resume .under-section#skills .row .skill-item .level {
+    opacity: 0;
+    transition: 0.3s;
+  }
+  body section#resume .under-section#languages .lg {
+    margin-bottom: 25px;
+  }
+  body section#folio #inner-folio {
+    padding: 10vh 5% !important;
+  }
+  body section#folio #inner-folio #construction {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30vh;
+  }
+  body section#folio #inner-folio #construction h5 {
+    font-family: "Homemade";
+    font-size: 1.5rem;
+  }
+  body section#folio #inner-folio #construction h1 {
+    font-family: "Yeon";
+    font-size: 2.5rem;
+  }
+  body section#folio #inner-folio #construction .painted {
+    color: var(--color);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    cursor: auto;
+  }
+  body #loading-page {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+  }
+  body #loading-page.load-page {
+    display: block !important;
+  }
+  body #loading-page .flap {
+    width: 100%;
+    height: 50%;
+  }
+  body #loading-page .flap#flap-top, body #loading-page .flap#flap-bottom {
+    background-color: var(--dark);
+    transition: background-color 0.3s;
+  }
+  body #loading-page .flap#flap-top {
+    transform: translateY(-100%);
+    animation: flapTop 3s forwards;
+  }
+  @keyframes flapTop {
+    40% {
+      transform: translateY(0%);
+    }
+    60% {
+      transform: translateY(0%);
+      background-color: var(--color);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  body #loading-page .flap#flap-bottom {
+    transform: translateY(100%);
+    animation: flapBottom 3s forwards;
+  }
+  @keyframes flapBottom {
+    40% {
+      transform: translateY(0%);
+    }
+    60% {
+      transform: translateY(0%);
+      background-color: var(--color);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+  body .cursor {
+    display: none;
+  }
+  body section .inner-section {
+    padding: 10vh 10% !important;
+  }
+  body section .inner-section .section-title {
+    height: 20vh !important;
+  }
+  body section .inner-section .under-section {
+    margin: 5vh 0 !important;
+  }
+  body section#about .inner-section #interests .interests-item {
+    width: 40% !important;
+  }
+  body section#resume .under-section#experience {
+    flex-direction: column;
+  }
+  body section#resume .under-section#experience #list-experience {
+    width: 100% !important;
+    display: none;
+  }
+  body section#resume .under-section#experience #list-experience #slider {
+    margin-top: 100px;
+    height: 300px !important;
+    width: 100%;
+  }
+  body section#resume .under-section#languages .lg {
+    margin-bottom: 25px;
+  }
+  body section#folio #inner-folio {
+    padding: 10vh 5% !important;
+  }
+}
 :root {
   --color: #CB8D63;
   --dark: #4D433C;
@@ -16057,7 +16361,6 @@ body {
   background-color: var(--dark);
   color: var(--white);
   font-family: "Saira" !important;
-  cursor: none;
 }
 body #loading-page {
   display: none;
@@ -16170,10 +16473,10 @@ body nav .nav-menu {
   transition: transform 0.9s;
 }
 body nav .nav-menu.navbar-displayed {
-  transform: translateY(0) !important;
+  transform: translateY(0);
 }
 body nav .nav-menu.navbar-hidden {
-  transform: translateY(-100%) !important;
+  transform: translateY(-100%);
 }
 body nav .nav-menu #navigation {
   display: flex;
@@ -16609,7 +16912,7 @@ body section#resume .under-section#skills .row .skill-item:nth-child(1) {
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(2) {
   top: 20%;
-  left: 10%;
+  left: 5%;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(3) {
   top: 20%;
@@ -16620,7 +16923,7 @@ body section#resume .under-section#skills .row .skill-item:nth-child(4) {
   left: 10%;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(5) {
-  top: 40%;
+  top: 50%;
   left: 90%;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(6) {
@@ -16633,7 +16936,7 @@ body section#resume .under-section#skills .row .skill-item:nth-child(7) {
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(8) {
   top: 50%;
-  left: 20%;
+  left: 15%;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(9) {
   top: 70%;
@@ -16648,8 +16951,8 @@ body section#resume .under-section#skills .row .skill-item:nth-child(11) {
   left: 65%;
 }
 body section#resume .under-section#skills .row .skill-item:nth-child(12) {
-  top: 10%;
-  left: 40%;
+  top: 30%;
+  left: 35%;
 }
 body section#resume .under-section#skills .row .skill-item.four {
   color: goldenrod;

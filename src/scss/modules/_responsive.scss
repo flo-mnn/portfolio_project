@@ -1,0 +1,349 @@
+// smartphone
+@media screen and (min-width: 320px)and (max-width: 767px) {
+    body {
+        cursor: auto;
+        nav {
+            .nav-menu {
+                width: 25vw !important;
+                height: 100vh !important;
+                position: absolute;
+                top: 0;
+                align-items: center !important;
+                justify-content: center;
+                flex-direction: column;
+                &.navbar-displayed {
+                    transform: translateY(0%) translateX(0)!important;
+                }; //for JS
+                &.navbar-hidden {
+                    transform: translateY(0%) translateX(-100%)!important;
+                }; //for JS
+                #navigation {
+                    flex-direction: column;
+                    align-items: center;
+                };
+            };
+        };
+        .cursor {
+            display: none;
+        };
+        section {
+            .inner-section {
+                padding: 10vh 10% !important;
+                .section-title {
+                    height: 20vh !important;
+                };
+                .under-section {
+                    margin: 5vh 0 !important;
+                };
+            };
+            &#home {
+                .wing {
+                    display: none !important;
+                };
+                #home-footer {
+                    height: 20vh !important;
+                    .footer-item {
+                        position: absolute;
+                        &#social {
+                            left: 2vw;
+                        };
+                        &#copyright {
+                            right: 5vw;
+                        };
+                    };
+                };
+            };
+            &#about {
+                .inner-section{
+                    #interests {
+                        .interests-item {
+                            width: 90% !important; //to change in responsive md = 50%, sm = 100%;
+                        };
+                    };
+                };
+            };
+            &#resume {
+                .under-section{
+                    &#experience {
+                        flex-direction: column;
+                        #list-experience {
+                            width: 100% !important;
+                            display: none;
+                            #slider {
+                            margin-top: 100px;
+                            height: 400px !important; //to see
+                            width: 100%;
+                            };
+                            .slider-next {
+                                left: unset !important;
+                                right: 5vw;
+                                top: 60%;
+                            };
+                        };
+                    };
+                    &#skills {
+                        display: none;
+                        // 
+                        .row {
+                            position: relative;
+                            height: 100vh !important;
+                            // background-color: white;
+                            .skill-item {
+                                position: absolute;
+                                color: black;
+                                transition: 0.4s;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                &:hover{
+                                    filter: saturate(6);
+                                    z-index: 8;
+                                    .logo {
+                                        opacity: 0;
+                                    };
+                                    .level {
+                                        opacity: 1;
+                                    };
+                                };
+                                &:nth-child(1) {
+                                    top: 50%;
+                                    left: 50%;
+                                };
+                                &:nth-child(2) {
+                                    top: 20%;
+                                    left: 5%;
+                                };
+                                &:nth-child(3) {
+                                    top: 20%;
+                                    left: 60%;
+                                };
+                                &:nth-child(4) {
+                                    top: 20%;
+                                    left: 10%;
+                                };
+                                &:nth-child(5) {
+                                    top: 90% !important;
+                                    left: 20% !important;
+                                };
+                                &:nth-child(6) {
+                                    top: 65%;
+                                    left: 35%;
+                                };
+                                &:nth-child(7) {
+                                    top: 35%;
+                                    left: 75%;
+                                };
+                                &:nth-child(8) {
+                                    top: 50%;
+                                    left: 15%;
+                                };
+                                &:nth-child(9) {
+                                    top: 80% !important;
+                                    left: 65% !important;
+                                };
+                                &:nth-child(10) {
+                                    top: 75%;
+                                    left: 5%;
+                                };
+                                &:nth-child(11) {
+                                    top: 5% !important;
+                                    left: 35% !important;
+                                };
+                                &:nth-child(12) {
+                                    top: 30%;
+                                    left: 35%;
+                                };
+                                &.four {
+                                    color: goldenrod;
+                                    &:hover {
+                                        transform: scale(4);
+                                    };
+                                };
+                                &.three {
+                                    color: lightcoral;
+                                    &:hover {
+                                        transform: scale(3);
+                                    };
+                                };
+                                &.two {
+                                    color: lightblue;
+                                    &:hover {
+                                        transform: scale(2);
+                                    };
+                                };
+                                &.one {
+                                    color: silver;
+                                    .line {
+                                        fill: silver;
+                                    };
+                                    .stroke {
+                                        stroke: silver;
+                                    };
+                                    &:hover {
+                                        transform: scale(1.4);
+                                        color: grey;
+                                        .line {
+                                            fill: grey;
+                                        };
+                                        .stroke {
+                                            stroke: grey;
+                                        };
+                                    };
+                                };
+                                // logo and skill superposition
+                                .logo {
+                                    position: absolute;
+                                    transition: 0.3s;
+                                };
+                                .level {
+                                    opacity: 0;
+                                    transition: 0.3s;
+                                };
+                            };
+                        };
+                        
+                    };
+                    &#languages {
+                        .lg{
+                            margin-bottom: 25px;
+                        };
+                    };
+                };
+            };
+            &#folio {
+                #inner-folio {
+                    padding: 10vh 5% !important;
+                    #construction {
+                        width: 100%;
+                        height: 50vh;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        margin-bottom: 30vh;
+                        h5 {
+                            font-family: "Homemade";
+                            font-size: 1.5rem;
+                        };
+                        h1 {
+                            font-family: "Yeon";
+                            font-size: 2.5rem;
+                        };
+                        .painted {
+                            color: var(--color);
+                        }; //letters 
+                    };
+                };
+            };
+        };
+    };
+};
+
+
+// tablette
+@media screen and (min-width:768px) and (max-width: 991px) {
+    body {
+        cursor: auto;
+        // loading page
+        #loading-page{
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            &.load-page{
+                display: block !important;
+            }; //js
+            .flap{
+                width: 100%;
+                height: 50%;
+                &#flap-top, &#flap-bottom{
+                    background-color: var(--dark);
+                    transition: background-color 0.3s;
+                };
+                &#flap-top{
+                    transform: translateY(-100%);
+                    animation: flapTop 3s forwards;
+                    @keyframes flapTop {
+                        40% {
+                            transform: translateY(0%);
+                        };
+                        60% {
+                            transform: translateY(0%);
+                            background-color: var(--color)
+                        };
+                        to {
+                            transform: translateY(-100%);
+                        };
+                    };
+                }
+                &#flap-bottom{
+                    transform: translateY(100%);
+                    animation: flapBottom 3s forwards;
+                    @keyframes flapBottom {
+                        40% {
+                            transform: translateY(0%);
+                        };
+                        60% {
+                            transform: translateY(0%);
+                            background-color: var(--color);
+                        };
+                        to {
+                            transform: translateY(100%);
+                        };
+                    };
+                }
+            };
+        };
+        .cursor {
+            display: none;
+        };
+        section {
+            .inner-section {
+                padding: 10vh 10% !important;
+                .section-title {
+                    height: 20vh !important;
+                };
+                .under-section {
+                    margin: 5vh 0 !important;
+                };
+            };
+            &#about {
+                .inner-section{
+                    #interests {
+                        .interests-item {
+                            width: 40% !important; //to change in responsive md = 50%, sm = 100%;
+                        };
+                    };
+                };
+            };
+            &#resume {
+                .under-section{
+                    &#experience {
+                        flex-direction: column;
+                        #list-experience {
+                            width: 100% !important;
+                            display: none;
+                            #slider {
+                            margin-top: 100px;
+                            height: 300px !important; //to see
+                            width: 100%;
+                            };
+                        };
+                    };
+                    &#languages {
+                        .lg{
+                            margin-bottom: 25px;
+                        };
+                    };
+                };
+            };
+            &#folio {
+                #inner-folio {
+                    padding: 10vh 5% !important;
+                };
+            };
+        };
+    };
+};

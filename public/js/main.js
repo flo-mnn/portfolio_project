@@ -90,7 +90,7 @@ let lightenCursor = () => {
     for (let i = 0; i < cursorOpacity05.length; i++) {
         let nodesI = cursorOpacity05[i];
         for (let i = 0; i < nodesI.length; i++) {
-          nodesI[i].style.cursor = "none";
+          // nodesI[i].style.cursor = "none";
           nodesI[i].addEventListener('mouseover',function(){
             cursor.style.opacity = '0.5';
           });
@@ -200,6 +200,7 @@ let changeSection = () => {
       loader.classList.add('load-page');
       // on half loader animation => 3s/2=1.5s;
       setTimeout(() => {
+        window.scrollTo(0,0);
         removeOnDisplay();
         sections[i].classList.add('onDisplay');
         navItems[i].classList.add('active');
@@ -306,6 +307,13 @@ let coverCube = () => {
     // divXP.classList.remove('appears');
 };
 
+let removeCovers = () => {
+  // reveal the cube
+  for (let i = 0; i < covers.length; i++) {
+    covers[i].classList.remove('cover');    
+    };
+};
+
 let revealXp = () => {
     sectionSkills.classList.add('cubeBlock');
     lgSection.classList.add('cubeBlock');
@@ -319,10 +327,7 @@ let revealXp = () => {
     cube.style.transition = '0.4s'; 
     divXP.style.transition = '0.4s';
     divXP.classList.add('appears');
-    // reveal the cube
-    for (let i = 0; i < covers.length; i++) {
-    covers[i].classList.remove('cover');    
-    };
+    removeCovers();
     cubeClick = true;
 };
 
@@ -352,6 +357,7 @@ let slideCaroussel = () => {
     showFace(activeIndex);
     activeSlide.classList.add("out-next");
     newSlide.classList.add('translate-next',"active");
+    removeCovers();
     setTimeout(() => {
         activeSlide.classList.remove('active',"out-next");
         newSlide.classList.remove('translate-next');
@@ -411,13 +417,50 @@ let paintLetter = (title) => {
 
 
 // // EVENT LISTENERS & call functions
+// window.addEventListener('resize', reportWindowSize);
 
-// cursor
-window.addEventListener('mousemove',moveCursor);
-lightenCursor();
+let smartphone = window.matchMedia("(max-width: 767px)");
+let tablet = window.matchMedia("(max-width: 991px)");
+let desktop = window.matchMedia("(min-width: 992px)");
 
-// wings
-mainTitle.addEventListener('mouseenter',deployWings);
+let screenSize = () => {
+  if (desktop.matches) {
+    window.addEventListener('mousemove',moveCursor);
+    lightenCursor();
+
+      // wings
+    mainTitle.addEventListener('mouseenter',deployWings);
+
+    navMenu.addEventListener('mouseleave',hideNavbar);
+
+  } else if (tablet.matches) {
+    if (smartphone.matches) {
+
+      for (let i = 0; i < sections.length; i++) {
+        sections[i].addEventListener('mousedown',hideNavbar);
+      };
+    } else { //tablet
+
+      // wings
+      mainTitle.addEventListener('mouseenter',deployWings);
+      for (let i = 0; i < sections.length; i++) {
+        sections[i].addEventListener('mousedown',hideNavbar);
+      };
+
+    };
+  };
+}
+
+
+window.addEventListener('resize',function() {
+    screenSize();
+  }) // Attach listener function on state changes
+screenSize();
+  
+
+
+
+// any size screen : 
 
 // credits
 copyrightDiv.addEventListener('mouseover',slideCredits);
@@ -425,7 +468,7 @@ copyrightDiv.addEventListener('mouseover',slideCredits);
 // navbar
 // -toggle part
 navToggle.addEventListener('mouseover',revealNavbar);
-navMenu.addEventListener('mouseleave',hideNavbar);
+// hide => see size screen functon
 
 // -change section
 changeSection();
