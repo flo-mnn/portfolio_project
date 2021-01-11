@@ -509,7 +509,7 @@ let previewTheme = () => {
     if (themePreviewCompt%2 == 1) {
       themePreview = 1;
     } else {
-      themePreview = 2;
+      themePreview = 0;
     };
   };
   addCta();
