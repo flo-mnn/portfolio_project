@@ -84,7 +84,7 @@ body {
         };
     };
     // cursor design
-    // cursor: none;
+    cursor: none;
     .cursor {
         width: 3rem;
         height: 3rem;
@@ -113,17 +113,28 @@ body {
             transition: 0.2s;
             transform-origin: center;
             &.click {
-                animation: cta 0.3s infinite alternate;
-                animation-delay: 1.3s;
+                animation: cta 0.3s 10 alternate;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-delay: 0.8s;
                 @keyframes cta {
                     from{
                         transform: scale(1);
                     };
                     to {
-                        transform: scale(1.2);
+                        transform: scale(1.4);
                     };
                 }
             };
+            &.clicked {
+                animation: rotate360 1s;
+                animation-iteration-count: 1 !important;
+                @keyframes rotate360 {
+                    to {
+                        transform: rotateY(360deg);
+                    };
+                };
+            }
             &:hover #M {
                 animation: slideTop 0.8s forwards;
                 @keyframes slideTop {
@@ -253,6 +264,7 @@ body {
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                text-align: center;
             };
             .under-section {
                 margin: 10vh 0;
@@ -261,11 +273,12 @@ body {
         };
         &#home {
             height: 100%;
-            // background: url('./../../../public/img/oxa-roxa-bnFuB--1lE4-unsplash.jpg') no-repeat;
+            // background-image: url('./../../../public/img/oxa-roxa-bnFuB--1lE4-unsplash.jpg');
+            // background-repeat: no-repeat;
             // background-size: cover;
             // background-position: center;
+            // filter: grayscale(10%);
             position: relative;
-            filter: grayscale(10%);
             .inner-section {
                 height: 100%;
                 justify-content: center;
@@ -394,9 +407,12 @@ body {
         &#about {
             .inner-section{
                 #introduction {
-                    img {
-                        filter: sepia(100%);
+                    .intro-text {
+                        text-align: justify;
                     };
+                    // img {
+                    //     filter: sepia(100%);
+                    // };
                     #location {
                         color: var(--color);
                     };
@@ -586,6 +602,7 @@ body {
                           };
                           p {
                               color: var(--white);
+                              text-align: justify;
                           };
                         };
                     };
@@ -799,6 +816,26 @@ body {
         };
         &#folio {
             flex-direction: column;
+            .inner-section{
+                position: relative;
+                #github-folio {
+                    color: white;
+                    position: sticky;
+                    top: 40%;
+                    left: 90%;
+                    transition: 0.2s;
+                    transform-origin: center;
+                    animation: pulse 1s infinite alternate-reverse;
+                    @keyframes pulse {
+                        to {
+                            transform: scale(1.4);
+                        };
+                    };
+                    &:hover{
+                        color: var(--color);
+                    };
+                };
+            };
             .section-title {
                 height: 30vh;
             };

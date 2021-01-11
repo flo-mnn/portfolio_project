@@ -1,6 +1,16 @@
 
 // // VARIABLES
 
+// check size screens
+let smartphone = window.matchMedia("(max-width: 767px)");
+let tablet = window.matchMedia("(max-width: 991px)");
+let desktop = window.matchMedia("(min-width: 992px)");
+
+// themes
+let currentTheme;
+let themePreview;
+let themePreviewCompt = 0;
+
 // cursor
 let cursor = document.querySelector('.cursor');
 let cursorOpacity05 = [document.querySelectorAll('span'),document.querySelectorAll('h1'),document.querySelectorAll('h3'),document.querySelectorAll('h5'),document.querySelectorAll('p'),document.querySelectorAll('button'),document.querySelectorAll('a'),document.querySelectorAll('.cube'),document.querySelectorAll('i'),document.querySelectorAll('img'),document.querySelectorAll('#logo'),document.querySelectorAll('.interests-item'),document.querySelectorAll('input'),document.querySelectorAll('textarea')]; cursorOpacity05.flat();
@@ -77,6 +87,7 @@ let themeSand = {
   color:  "#CB8D63",
   light: "#d4c0b3",
   dark: "#4D433C",
+  avatarFilter: "sepia(100%)",
 };
 let themePink = {
   name: "sunset",
@@ -86,6 +97,7 @@ let themePink = {
   color:  "#B77973",
   light: "#d4c0b3",
   dark: "#855854",
+  avatarFilter: "unset",
 };
 let themeBee = {
   name: "bee",
@@ -95,6 +107,7 @@ let themeBee = {
   color:  "#e7ad4a",
   light: "#C1A96B",
   dark: "#5D633C",
+  avatarFilter: "sepia(100%)",
 };
 let allThemes = [themeSand,themeBee,themePink];
 let logo = document.querySelector('#logo');
@@ -122,7 +135,7 @@ let lightenCursor = () => {
     for (let i = 0; i < cursorOpacity05.length; i++) {
         let nodesI = cursorOpacity05[i];
         for (let i = 0; i < nodesI.length; i++) {
-          // nodesI[i].style.cursor = "none";
+          nodesI[i].style.cursor = "none";
           nodesI[i].addEventListener('mouseover',function(){
             cursor.style.opacity = '0.5';
           });
@@ -295,7 +308,11 @@ let showFace = (faceIndex) => {
       cube.style.transform = `translateZ(0vw) rotateY(-180deg)`;
       // launch video
       let video = document.querySelector('#molengeek-video');
-      video.src = "https://www.youtube.com/embed/D9aK6z8fXe4?|&autoplay=1"; 
+      if (desktop.matches) {
+        video.src = "https://www.youtube.com/embed/D9aK6z8fXe4?|&autoplay=1"; 
+      } else {
+        video.src = "https://www.youtube.com/embed/D9aK6z8fXe4?";
+      };
       face = video.parentElement;
       break;
     // ULB -right
@@ -449,17 +466,16 @@ let paintLetter = (title) => {
 
 let changeTheme = (theme) => {
   let home = document.querySelector('#home');
-  home.style.background = `url('./../../../public/img/${theme.url}') no-repeat`;
+  home.style.backgroundImage = `url('./public/img/${theme.url}')`;
+  home.style.backgroundRepeat = "no-repeat";
   home.style.backgroundPosition = theme.bgPosition;
   home.style.backgroundSize = theme.bgSize;
   document.documentElement.style.setProperty('--color', theme.color);
   document.documentElement.style.setProperty('--light', theme.light);
   document.documentElement.style.setProperty('--dark', theme.dark);
-  if (theme === themePink) {
-   let imageMe = document.querySelector("#introduction").querySelector('img');
-   imageMe.style.filter = "unset";
-  //  filter: sepia(100%);
-  }
+ 
+  let imageMe = document.querySelector("#introduction").querySelector('img');
+  imageMe.style.filter = theme.avatarFilter;
 };
 
 let addCta = () => {
@@ -469,15 +485,79 @@ let removeCta = () => {
   logo.classList.remove('click');
 };
 
-// // EVENT LISTENERS & call functions
-// window.addEventListener('resize', reportWindowSize);
+let loadRandomTheme = () => {
+  let randomTheme = Math.floor(Math.random()*allThemes.length);
+  currentTheme = randomTheme;
+  changeTheme(allThemes[currentTheme]);
+};
 
-let smartphone = window.matchMedia("(max-width: 767px)");
-let tablet = window.matchMedia("(max-width: 991px)");
-let desktop = window.matchMedia("(min-width: 992px)");
+let previewTheme = () => {
+  themePreviewCompt ++;
+  if (currentTheme === 0) {
+    if (themePreviewCompt%2 == 1) {
+      themePreview = 2;
+    } else {
+      themePreview = 1;
+    };
+  } else if (currentTheme === 1) {
+    if (themePreviewCompt%2 == 1) {
+      themePreview = 0;
+    } else {
+      themePreview = 2;
+    };
+  } else if (currentTheme === 2) {
+    if (themePreviewCompt%2 == 1) {
+      themePreview = 1;
+    } else {
+      themePreview = 2;
+    };
+  };
+  addCta();
+  let svg = logo.querySelector('g');
+  svg.setAttribute('fill',`url(#${allThemes[themePreview].name})`);
+
+
+  setTimeout(() => {
+    if (desktop.matches) {
+      removeCta();
+    };
+    svg.removeAttribute('fill');
+  }, 4000);
+};
+
+let clickToChange = () => {
+  logo.classList.add('clicked');
+  sectionOnDisplay.classList.add('blurred');
+  changeTheme(allThemes[themePreview]);
+  currentTheme = themePreview;
+  themePreviewCompt = 0;
+  
+  setTimeout(() => {
+    logo.classList.remove('clicked');
+    sectionOnDisplay.classList.remove('blurred');
+  }, 1000);
+  
+};
+
+
+// // EVENT LISTENERS & call functions
+
+// load theme
+window.addEventListener('DOMContentLoaded',loadRandomTheme);
+
+logo.addEventListener('mouseenter',previewTheme);
+
+logo.addEventListener('click',clickToChange);
+
+// size screens
 
 let screenSize = () => {
   if (desktop.matches) {
+    // change theme call to action
+    removeCta();
+    logo.style.animationIterationCount = "10";
+    logo.style.animationDuration = "0.3s";
+    // cursor
     window.addEventListener('mousemove',moveCursor);
     lightenCursor();
 
@@ -488,13 +568,23 @@ let screenSize = () => {
 
   } else if (tablet.matches) {
     if (smartphone.matches) {
+      // change theme call to action
+        addCta();
+        logo.style.animationIterationCount = "infinite";
+        logo.style.animationDuration = "1s";
 
+
+      // navbar hide
       for (let i = 0; i < sections.length; i++) {
         sections[i].addEventListener('mousedown',hideNavbar);
       };
     } else { //tablet
+      // change theme call to action
+      addCta();
+      logo.style.animationIterationCount = "infinite";
+      logo.style.animationDuration = "1s";
 
-      // wings
+      // wings  
       mainTitle.addEventListener('mouseenter',deployWings);
       for (let i = 0; i < sections.length; i++) {
         sections[i].addEventListener('mousedown',hideNavbar);
@@ -555,61 +645,9 @@ window.addEventListener('scroll',loadCircles)
 paintLetter(t1);
 paintLetter(t2);
 
-// themes
-let currentTheme;
-window.addEventListener('DOMContentLoaded',function(){
-  let randomTheme = Math.floor(Math.random()*allThemes.length);
-  currentTheme = randomTheme;
-  changeTheme(allThemes[currentTheme]);
-  console.log(currentTheme);
-});
-
-let themePreview;
-let themePreviewCompt = 0;
-
-logo.addEventListener('mouseenter',function(e){
-  e.stopPropagation();
-  console.log(currentTheme);
-  themePreview = currentTheme + themePreviewCompt +1;
-  if (themePreview >= allThemes.length) {
-    themePreview = themePreviewCompt;
-  };
-  console.log(themePreview);
-  addCta();
-  setTimeout(() => {
-    changeTheme(allThemes[themePreview]);
-  }, 500);
-  themePreviewCompt ++;
-  if (themePreviewCompt === 2) {
-    themePreviewCompt = 0;
-  };
-});
-logo.addEventListener('mouseleave',function(){
-  setTimeout(() => {
-    changeTheme(allThemes[currentTheme]);
-    removeCta();
-  }, 500);
-});
-logo.addEventListener('click',function () {
-  changeTheme(allThemes[themePreview]);
-  currentTheme = themePreview;
-  console.log(currentTheme);
-  themePreviewCompt = 0;
-  // svg color
-  let letters = logo.querySelector('svg');
-  letters.style.fill = "var(--color)";
-  setTimeout(() => {
-    letters.style.fill = "var(--white)";
-  }, 2000);
-
-});
-
-
-
-
-
-
 // BILINGUAL
+// multilingual
+
 let allToTranslate = [document.querySelector('#function').querySelectorAll('h5'),document.querySelectorAll('.rights'),document.querySelectorAll('.section-title-text'),document.querySelectorAll('#location-text'),document.querySelectorAll('.intro-text'),document.querySelectorAll('.quality'),document.querySelectorAll('.interest'),document.querySelectorAll('.experience-position'),document.querySelectorAll('.company-name'),document.querySelectorAll('.date'),document.querySelectorAll('.xp-description'),document.querySelectorAll('.level'),document.querySelectorAll(".language"),document.querySelectorAll('#french'),document.querySelectorAll('textarea')]; allToTranslate.flat();
 
 let allToTranslateNew = [];
@@ -625,10 +663,15 @@ for (let i = 0; i < allToTranslateNew.length; i++) {
   // console.log(allToTranslateNew[i].textContent);
 };
 // translation
-let french = ["Développeuse Web",`Tous droits réservés.`,"Florence, enchantée !","Téléchargements en cours","Jetez-y un oeil","Contactez-moi","  Bruxelles, Belgique","Salut ! Je m\'appelle Florence et je suis une jeune développeuse web. J\'ai étudié la traduction à l\'université avant de travailler comme réceptionniste dans un hôtel. Quand la Covid-19 a frappé, j\'ai réalisé qu\'il était temps pour moi d'explorer davantage ma créativité.","J\'ai toujours aimé créer des choses, des montages photos de mon skyblog d\'ado à la couture, en passant par le tricot, les DIY en tout genre, le dessin... Et maintenant, c\'est au design et développement web que je m\'attele !","Précision","Ponctualité","Disponible","Livres","DIY","Langues","Voyages","Écologie","Droits des Femmes","CodingSchool","Master en Traduction","Stagiaire","MolenGeek","Université de Bruxelles","Éditions Jourdan","Septembre 2020 - Mars 2021","Septembre 2014 - Septembre 2019","Octobre 2018 - Janvier 2019","En seulement six mois, une équipe de coachs est là pour nous guider alors qu'on se lance éperdument dans le code. Au coeur de Bruxelles, nous travaillons sans relâche pour devenir full-stack web developer. Nous commençons en douceur avec HTML et CSS, puis nous passons à la base avec JavaScript et aussi son framework React, avant de plonger dans PHP et Laravel.",`J'ai eu la chance de passer cinq années à étudier les langues de Shakespeare, de Pouchkine, mais aussi et avant tout celle de Molière. Ici, à Bruxelles, mais aussi en Russie, pendant un échange riche en apprentissage. En cinq ans, j'ai pu apprendre l'art de la traduction, un art dans lequel Google Traduction n'est pas prêt de détrôner l'humain. Cet art est bien trop subtile.`,`Pendant un semestre, j'avais un peu le boulot de rêve. Passer ses journées à lire, évaluer et corriger des manuscrits... Plutôt cool, non ? Mais aussi gérer la publication d'articles sur leurs sites internet et même en rédiger certains. `,"avancée","intermédiaire","intermédiaire","expérimentée","bases","expérimentée","expérimentée","expérimentée","expérimentée","avancée","bases","bases","anglais","français","russe","néerlandais","Langue Maternelle","Chère Florence"];
+let french = ["Développeuse Web",`Tous droits réservés.`,"Florence, enchantée !","Téléchargements en cours","Jetez-y un oeil","Contactez-moi","  Bruxelles, Belgique","Salut ! Je m\'appelle Florence et je suis une jeune développeuse web. J\'ai étudié la traduction à l\'université avant de travailler comme réceptionniste dans un hôtel. Quand la Covid-19 a frappé, j\'ai réalisé qu\'il était temps pour moi d'explorer davantage ma créativité.","J\'ai toujours aimé créer des choses, des montages photos de mon skyblog d\'ado à la couture, en passant par le tricot, les DIY en tout genre, le dessin... Et maintenant, c\'est au design et développement web que je m\'attele !","Précision","Ponctualité","Disponible","Livres","DIY","Langues","Voyages","Écologie","Droits des Femmes","CodingSchool","Master en Traduction","Stagiaire","MolenGeek","Université de Bruxelles","Éditions Jourdan","Septembre 2020 - Mars 2021","Septembre 2014 - Septembre 2019","Octobre 2018 - Janvier 2019","En seulement six mois, une équipe de coachs est là pour nous guider alors qu'on se lance éperdument dans le code. Au coeur de Bruxelles, nous travaillons sans relâche pour devenir full-stack web developer. Nous commençons en douceur avec HTML et CSS, puis nous passons à la base avec JavaScript et aussi son framework React, avant de plonger dans PHP et Laravel.",`J'ai eu la chance de passer cinq années à étudier les langues de Shakespeare, de Pouchkine, mais aussi et avant tout celle de Molière. Ici, à Bruxelles, mais aussi en Russie, pendant un échange riche en apprentissage. En cinq ans, j'ai pu apprendre l'art de la traduction, un art dans lequel Google Traduction n'est pas prêt de détrôner l'humain. Cet art est bien trop subtile.`,`Pendant un semestre, j'avais un peu le boulot de rêve. Passer ses journées à lire, évaluer et corriger des manuscrits... Plutôt cool, non ? Mais aussi gérer la publication d'articles sur leurs sites internet et même en rédiger certains. `,"avancée","intermédiaire","intermédiaire","expérimentée","bases","expérimentée","expérimentée","expérimentée","expérimentée","avancée","bases","bases","anglais","français","russe","néerlandais","Langue Maternelle","Chère Florence, "];
 
 
 let switchLg = document.querySelector('#switchLg');
+let switchLink = switchLg.parentElement;
+let linkedIn = document.querySelector("#linkedin");
+let contact = document.querySelector('#contact').querySelector('form');
+let contactSend = contact.querySelector('#submit');
+let namePlace = contact.querySelector('#name');
 let loadLg = (lg) => {
   for (let i = 0; i < allToTranslateNew.length; i++) {
     allToTranslateNew[i].textContent = lg[i];
@@ -638,15 +681,27 @@ let loadLg = (lg) => {
 if (navigator.language.includes('fr')) {
   loadLg(french);
   switchLg.textContent = "en";
+  linkedIn.href = "https://www.linkedin.com/in/florence-monnaie-web-developper-traduction-fr-en-ru/?locale=fr_FR";
+  contactSend.value = "Envoyer";
+  namePlace.placeholder= "prénom *";
+
 };
 
-switchLg.addEventListener('click',function(e){
+switchLink.addEventListener('click',function(e){
+  e.stopPropagation();
   e.preventDefault();
   if (switchLg.textContent === "fr") {
     loadLg(french);
     switchLg.textContent = "en";
+    linkedIn.href = "https://www.linkedin.com/in/florence-monnaie-web-developper-traduction-fr-en-ru/?locale=fr_FR";
+    contactSend.value = "Envoyer";
+    namePlace.placeholder= "prénom *";
+
   } else {
     loadLg(english);
     switchLg.textContent = "fr";
+    linkedIn.href = "https://www.linkedin.com/in/florence-monnaie-web-developper-traduction-fr-en-ru/?locale=en_US";
+    contactSend.value = "Send";
+    namePlace.placeholder= "name *";
   };
 });
