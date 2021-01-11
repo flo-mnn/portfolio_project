@@ -16040,7 +16040,7 @@ h3 {
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
   body {
-    cursor: auto;
+    cursor: auto !important;
   }
   body nav .nav-menu {
     width: 25vw !important;
@@ -16133,53 +16133,17 @@ h3 {
   body section#resume .under-section#skills .row .skill-item:hover .level {
     opacity: 1;
   }
-  body section#resume .under-section#skills .row .skill-item:nth-child(1) {
-    top: 50%;
-    left: 50%;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(2) {
-    top: 20%;
-    left: 5%;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(3) {
-    top: 20%;
-    left: 60%;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(4) {
-    top: 20%;
-    left: 10%;
-  }
   body section#resume .under-section#skills .row .skill-item:nth-child(5) {
     top: 90% !important;
     left: 20% !important;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(6) {
-    top: 65%;
-    left: 35%;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(7) {
-    top: 35%;
-    left: 75%;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(8) {
-    top: 50%;
-    left: 15%;
   }
   body section#resume .under-section#skills .row .skill-item:nth-child(9) {
     top: 80% !important;
     left: 65% !important;
   }
-  body section#resume .under-section#skills .row .skill-item:nth-child(10) {
-    top: 75%;
-    left: 5%;
-  }
   body section#resume .under-section#skills .row .skill-item:nth-child(11) {
     top: 5% !important;
     left: 35% !important;
-  }
-  body section#resume .under-section#skills .row .skill-item:nth-child(12) {
-    top: 30%;
-    left: 35%;
   }
   body section#resume .under-section#skills .row .skill-item.four {
     color: goldenrod;
@@ -16256,7 +16220,7 @@ h3 {
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   body {
-    cursor: auto;
+    cursor: auto !important;
   }
   body #loading-page {
     display: none;
@@ -16362,6 +16326,7 @@ body {
   background-color: var(--dark);
   color: var(--white);
   font-family: "Saira" !important;
+  cursor: none;
 }
 body::-webkit-scrollbar {
   width: 10px;
@@ -16455,15 +16420,26 @@ body nav #logo {
   transform-origin: center;
 }
 body nav #logo.click {
-  animation: cta 0.3s infinite alternate;
-  animation-delay: 1.3s;
+  animation: cta 0.3s 10 alternate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: 0.8s;
 }
 @keyframes cta {
   from {
     transform: scale(1);
   }
   to {
-    transform: scale(1.2);
+    transform: scale(1.4);
+  }
+}
+body nav #logo.clicked {
+  animation: rotate360 1s;
+  animation-iteration-count: 1 !important;
+}
+@keyframes rotate360 {
+  to {
+    transform: rotateY(360deg);
   }
 }
 body nav #logo:hover #M {
@@ -16595,6 +16571,7 @@ body section .inner-section .section-title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 body section .inner-section .under-section {
   margin: 10vh 0;
@@ -16603,7 +16580,6 @@ body section .inner-section .under-section {
 body section#home {
   height: 100%;
   position: relative;
-  filter: grayscale(10%);
 }
 body section#home .inner-section {
   height: 100%;
@@ -16715,8 +16691,8 @@ body section#home .inner-section #home-footer .footer-item#copyright span a {
   text-decoration: none;
   color: var(--light);
 }
-body section#about .inner-section #introduction img {
-  filter: sepia(100%);
+body section#about .inner-section #introduction .intro-text {
+  text-align: justify;
 }
 body section#about .inner-section #introduction #location {
   color: var(--color);
@@ -16902,6 +16878,7 @@ body section#resume .under-section#experience #list-experience .experience-list-
 }
 body section#resume .under-section#experience #list-experience .experience-list-item p {
   color: var(--white);
+  text-align: justify;
 }
 body section#resume .under-section.cubeBlock {
   display: block !important;
@@ -17097,6 +17074,26 @@ body section#resume .under-section#languages .lg:nth-child(4) .front {
 }
 body section#folio {
   flex-direction: column;
+}
+body section#folio .inner-section {
+  position: relative;
+}
+body section#folio .inner-section #github-folio {
+  color: white;
+  position: sticky;
+  top: 40%;
+  left: 90%;
+  transition: 0.2s;
+  transform-origin: center;
+  animation: pulse 1s infinite alternate-reverse;
+}
+@keyframes pulse {
+  to {
+    transform: scale(1.4);
+  }
+}
+body section#folio .inner-section #github-folio:hover {
+  color: var(--color);
 }
 body section#folio .section-title {
   height: 30vh;
