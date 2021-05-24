@@ -87,7 +87,7 @@ let themeSand = {
   color:  "#CB8D63",
   light: "#d4c0b3",
   dark: "#4D433C",
-  avatarFilter: "sepia(100%)",
+  avatarFilter: "unset",
 };
 let themePink = {
   name: "sunset",
@@ -107,7 +107,7 @@ let themeBee = {
   color:  "#e7ad4a",
   light: "#C1A96B",
   dark: "#5D633C",
-  avatarFilter: "sepia(100%)",
+  avatarFilter: "unset",
 };
 let allThemes = [themeSand,themeBee,themePink];
 let logo = document.querySelector('#logo');
